@@ -1,0 +1,847 @@
+diff --git a/arch/arm/mach-sa1100/Kconfig b/arch/arm/mach-sa1100/Kconfig
+index 7255a72..61afbbc 100644
+--- a/arch/arm/mach-sa1100/Kconfig
++++ b/arch/arm/mach-sa1100/Kconfig
+@@ -270,7 +270,7 @@ config SA1100_PFS168
+ 	bool "Tulsa"
+ 	depends on ARCH_SA1100
+ 	help
+-	  The Radisys Corp. PFS-168 (aka Tulsa) is an Intel® StrongArm® SA-1110 based
++	  The Radisys Corp. PFS-168 (aka Tulsa) is an IntelÂ® StrongArmÂ® SA-1110 based
+ 	  computer which includes the SA-1111 Microprocessor Companion Chip and other
+ 	  custom I/O designed to add connectivity and multimedia features for vending
+ 	  and business machine applications. Say Y here if you require support for
+diff --git a/arch/ppc/Kconfig b/arch/ppc/Kconfig
+index 3c55bfb..cfa81ef 100644
+--- a/arch/ppc/Kconfig
++++ b/arch/ppc/Kconfig
+@@ -345,7 +345,7 @@ config RPXLITE
+ 
+ 	  HERMES:
+ 	  Hermes-Pro ISDN/LAN router with integrated 8 x hub
+-	  Manufacturer: Multidata Gesellschaft für Datentechnik und Informatik
++	  Manufacturer: Multidata Gesellschaft fÃ¼r Datentechnik und Informatik
+ 	  <http://www.multidata.de/>
+ 	  Date of Release: 2000 (?)
+ 	  End of life: -
+diff --git a/arch/sparc64/Kconfig b/arch/sparc64/Kconfig
+index 815b9fe..ab10f76 100644
+--- a/arch/sparc64/Kconfig
++++ b/arch/sparc64/Kconfig
+@@ -5,680 +5,6 @@
+ 
+ mainmenu "Linux/UltraSPARC Kernel Configuration"
+ 
+-config MMU
+-	bool
+-	default y
+-
+-config SWAP
+-	bool
+-	default y
+-
+-source "init/Kconfig"
+-
+-
+-menu "General setup"
+-
+-config BBC_I2C
+-	tristate "UltraSPARC-III bootbus i2c controller driver"
+-	help
+-	  The BBC devices on the UltraSPARC III have two I2C controllers.  The
+-	  first I2C controller connects mainly to configuration PROMs (NVRAM,
+-	  CPU configuration, DIMM types, etc.).  The second I2C controller
+-	  connects to environmental control devices such as fans and
+-	  temperature sensors.  The second controller also connects to the
+-	  smartcard reader, if present.  Say Y to enable support for these.
+-
+-config VT
+-	bool
+-	default y
+-	---help---
+-	  If you say Y here, you will get support for terminal devices with
+-	  display and keyboard devices. These are called "virtual" because you
+-	  can run several virtual terminals (also called virtual consoles) on
+-	  one physical terminal. This is rather useful, for example one
+-	  virtual terminal can collect system messages and warnings, another
+-	  one can be used for a text-mode user session, and a third could run
+-	  an X session, all in parallel. Switching between virtual terminals
+-	  is done with certain key combinations, usually Alt-<function key>.
+-
+-	  The setterm command ("man setterm") can be used to change the
+-	  properties (such as colors or beeping) of a virtual terminal. The
+-	  man page console_codes(4) ("man console_codes") contains the special
+-	  character sequences that can be used to change those properties
+-	  directly. The fonts used on virtual terminals can be changed with
+-	  the setfont ("man setfont") command and the key bindings are defined
+-	  with the loadkeys ("man loadkeys") command.
+-
+-	  You need at least one virtual terminal device in order to make use
+-	  of your keyboard and monitor. Therefore, only people configuring an
+-	  embedded system would want to say N here in order to save some
+-	  memory; the only way to log into such a system is then via a serial
+-	  or network connection.
+-
+-	  If unsure, say Y, or else you won't be able to do much with your new
+-	  shiny Linux system :-)
+-
+-config VT_CONSOLE
+-	bool
+-	default y
+-	---help---
+-	  The system console is the device which receives all kernel messages
+-	  and warnings and which allows logins in single user mode. If you
+-	  answer Y here, a virtual terminal (the device used to interact with
+-	  a physical terminal) can be used as system console. This is the most
+-	  common mode of operations, so you should say Y here unless you want
+-	  the kernel messages be output only to a serial port (in which case
+-	  you should say Y to "Console on serial port", below).
+-
+-	  If you do say Y here, by default the currently visible virtual
+-	  terminal (/dev/tty0) will be used as system console. You can change
+-	  that with a kernel command line option such as "console=tty3" which
+-	  would use the third virtual terminal as system console. (Try "man
+-	  bootparam" or see the documentation of your boot loader (lilo or
+-	  loadlin) about how to pass options to the kernel at boot time.)
+-
+-	  If unsure, say Y.
+-
+-config HW_CONSOLE
+-	bool
+-	default y
+-
+-config HUGETLB_PAGE
+-	bool "SPARC64 Huge TLB Page Support"
+-	help
+-	  This enables support for huge pages.  User space applications
+-	  can make use of this support with the sys_alloc_hugepages and
+-	  sys_free_hugepages system calls.  If your applications are
+-	  huge page aware, then say Y here.
+-
+-	  Otherwise, say N.
+-
+-config SMP
+-	bool "Symmetric multi-processing support"
+-	---help---
+-	  This enables support for systems with more than one CPU. If you have
+-	  a system with only one CPU, like most personal computers, say N. If
+-	  you have a system with more than one CPU, say Y.
+-
+-	  If you say N here, the kernel will run on single and multiprocessor
+-	  machines, but will use only one CPU of a multiprocessor machine. If
+-	  you say Y here, the kernel will run on many, but not all,
+-	  singleprocessor machines. On a singleprocessor machine, the kernel
+-	  will run faster if you say N here.
+-
+-	  Note that if you say Y here and choose architecture "586" or
+-	  "Pentium" under "Processor family", the kernel will not work on 486
+-	  architectures. Similarly, multiprocessor kernels for the "PPro"
+-	  architecture may not work on all Pentium based boards.
+-
+-	  People using multiprocessor machines who say Y here should also say
+-	  Y to "Enhanced Real Time Clock Support", below. The "Advanced Power
+-	  Management" code will be disabled if you say Y here.
+-
+-	  See also the <file:Documentation/smp.tex>,
+-	  <file:Documentation/smp.txt>, <file:Documentation/i386/IO-APIC.txt>,
+-	  <file:Documentation/nmi_watchdog.txt> and the SMP-HOWTO available at
+-	  <http://www.linuxdoc.org/docs.html#howto>.
+-
+-	  If you don't know what to do here, say N.
+-
+-config PREEMPT
+-	bool "Preemptible Kernel"
+-	help
+-	  This option reduces the latency of the kernel when reacting to
+-	  real-time or interactive events by allowing a low priority process to
+-	  be preempted even if it is in kernel mode executing a system call.
+-	  This allows applications to run more reliably even when the system is
+-	  under load.
+-
+-	  Say Y here if you are building a kernel for a desktop, embedded
+-	  or real-time system.  Say N if you are unsure.
+-
+-config NR_CPUS
+-	int "Maximum number of CPUs (2-64)"
+-	depends on SMP
+-	default "64"
+-
+-# Identify this as a Sparc64 build
+-config SPARC64
+-	bool
+-	default y
+-	help
+-	  SPARC is a family of RISC microprocessors designed and marketed by
+-	  Sun Microsystems, incorporated.  This port covers the newer 64-bit
+-	  UltraSPARC.  The UltraLinux project maintains both the SPARC32 and
+-	  SPARC64 ports; its web page is available at
+-	  <http://www.ultralinux.org/>.
+-
+-config HOTPLUG
+-	bool "Support for hot-pluggable devices"
+-	---help---
+-	  Say Y here if you want to plug devices into your computer while
+-	  the system is running, and be able to use them quickly.  In many
+-	  cases, the devices can likewise be unplugged at any time too.
+-
+-	  One well known example of this is PCMCIA- or PC-cards, credit-card
+-	  size devices such as network cards, modems or hard drives which are
+-	  plugged into slots found on all modern laptop computers.  Another
+-	  example, used on modern desktops as well as laptops, is USB.
+-
+-	  Enable HOTPLUG and KMOD, and build a modular kernel.  Get agent
+-	  software (at <http://linux-hotplug.sourceforge.net/>) and install it.
+-	  Then your kernel will automatically call out to a user mode "policy
+-	  agent" (/sbin/hotplug) to load modules and set up software needed
+-	  to use devices as you hotplug them.
+-
+-# Global things across all Sun machines.
+-config HAVE_DEC_LOCK
+-	bool
+-	default y
+-
+-config RWSEM_GENERIC_SPINLOCK
+-	bool
+-
+-config RWSEM_XCHGADD_ALGORITHM
+-	bool
+-	default y
+-
+-config GENERIC_ISA_DMA
+-	bool
+-	default y
+-
+-config ISA
+-	bool
+-	help
+-	  Find out whether you have ISA slots on your motherboard.  ISA is the
+-	  name of a bus system, i.e. the way the CPU talks to the other stuff
+-	  inside your box.  Other bus systems are PCI, EISA, MicroChannel
+-	  (MCA) or VESA.  ISA is an older system, now being displaced by PCI;
+-	  newer boards don't support it.  If you have ISA, say Y, otherwise N.
+-
+-config ISAPNP
+-	bool
+-	help
+-	  Say Y here if you would like support for ISA Plug and Play devices.
+-	  Some information is in <file:Documentation/isapnp.txt>.
+-
+-	  This support is also available as a module called isapnp.o ( =
+-	  code which can be inserted in and removed from the running kernel
+-	  whenever you want). If you want to compile it as a module, say M
+-	  here and read <file:Documentation/modules.txt>.
+-
+-	  If unsure, say Y.
+-
+-config EISA
+-	bool
+-	---help---
+-	  The Extended Industry Standard Architecture (EISA) bus was
+-	  developed as an open alternative to the IBM MicroChannel bus.
+-
+-	  The EISA bus provided some of the features of the IBM MicroChannel
+-	  bus while maintaining backward compatibility with cards made for
+-	  the older ISA bus.  The EISA bus saw limited use between 1988 and
+-	  1995 when it was made obsolete by the PCI bus.
+-
+-	  Say Y here if you are building a kernel for an EISA-based machine.
+-
+-	  Otherwise, say N.
+-
+-config MCA
+-	bool
+-	help
+-	  MicroChannel Architecture is found in some IBM PS/2 machines and
+-	  laptops.  It is a bus system similar to PCI or ISA. See
+-	  <file:Documentation/mca.txt> (and especially the web page given
+-	  there) before attempting to build an MCA bus kernel.
+-
+-config PCMCIA
+-	tristate
+-	---help---
+-	  Say Y here if you want to attach PCMCIA- or PC-cards to your Linux
+-	  computer.  These are credit-card size devices such as network cards,
+-	  modems or hard drives often used with laptops computers.  There are
+-	  actually two varieties of these cards: the older 16 bit PCMCIA cards
+-	  and the newer 32 bit CardBus cards.  If you want to use CardBus
+-	  cards, you need to say Y here and also to "CardBus support" below.
+-
+-	  To use your PC-cards, you will need supporting software from David
+-	  Hinds' pcmcia-cs package (see the file <file:Documentation/Changes>
+-	  for location).  Please also read the PCMCIA-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  When compiled this way, there will be modules called pcmcia_core.o
+-	  and ds.o.  If you want to compile it as a module, say M here and
+-	  read <file:Documentation/modules.txt>.
+-
+-config SBUS
+-	bool
+-	default y
+-
+-config SBUSCHAR
+-	bool
+-	default y
+-
+-config SUN_AUXIO
+-	bool
+-	default y
+-
+-config SUN_IO
+-	bool
+-	default y
+-
+-config PCI
+-	bool "PCI support"
+-	help
+-	  Find out whether you have a PCI motherboard. PCI is the name of a
+-	  bus system, i.e. the way the CPU talks to the other stuff inside
+-	  your box. Other bus systems are ISA, EISA, MicroChannel (MCA) or
+-	  VESA. If you have PCI, say Y, otherwise N.
+-
+-	  The PCI-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>, contains valuable
+-	  information about which PCI hardware does work under Linux and which
+-	  doesn't.
+-
+-config RTC
+-	tristate
+-	depends on PCI
+-	default y
+-	---help---
+-	  If you say Y here and create a character special file /dev/rtc with
+-	  major number 10 and minor number 135 using mknod ("man mknod"), you
+-	  will get access to the real time clock (or hardware clock) built
+-	  into your computer.
+-
+-	  Every PC has such a clock built in. It can be used to generate
+-	  signals from as low as 1Hz up to 8192Hz, and can also be used
+-	  as a 24 hour alarm. It reports status information via the file
+-	  /proc/driver/rtc and its behaviour is set by various ioctls on
+-	  /dev/rtc.
+-
+-	  If you run Linux on a multiprocessor machine and said Y to
+-	  "Symmetric Multi Processing" above, you should say Y here to read
+-	  and set the RTC in an SMP compatible fashion.
+-
+-	  If you think you have a use for such a device (such as periodic data
+-	  sampling), then say Y here, and read <file:Documentation/rtc.txt>
+-	  for details.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module is called rtc.o. If you want to compile it as a module,
+-	  say M here and read <file:Documentation/modules.txt>.
+-
+-source "drivers/pci/Kconfig"
+-
+-config SUN_OPENPROMFS
+-	tristate "Openprom tree appears in /proc/openprom"
+-	help
+-	  If you say Y, the OpenPROM device tree will be available as a
+-	  virtual file system, which you can mount to /proc/openprom by "mount
+-	  -t openpromfs none /proc/openprom".
+-
+-	  If you want to compile the /proc/openprom support as a module ( =
+-	  code which can be inserted in and removed from the running kernel
+-	  whenever you want), say M here and read
+-	  <file:Documentation/modules.txt>.
+-	  The module will be called openpromfs.o.  If unsure, say M.
+-
+-config KCORE_ELF
+-	bool
+-	depends on PROC_FS
+-	default y
+-	---help---
+-	  If you enabled support for /proc file system then the file
+-	  /proc/kcore will contain the kernel core image. This can be used
+-	  in gdb:
+-
+-	  $ cd /usr/src/linux ; gdb vmlinux /proc/kcore
+-
+-	  You have two choices here: ELF and A.OUT. Selecting ELF will make
+-	  /proc/kcore appear in ELF core format as defined by the Executable
+-	  and Linking Format specification. Selecting A.OUT will choose the
+-	  old "a.out" format which may be necessary for some old versions
+-	  of binutils or on some architectures.
+-
+-	  This is especially useful if you have compiled the kernel with the
+-	  "-g" option to preserve debugging information. It is mainly used
+-	  for examining kernel data structures on the live kernel so if you
+-	  don't understand what this means or are not a kernel hacker, just
+-	  leave it at its default value ELF.
+-
+-config SPARC32_COMPAT
+-	bool "Kernel support for Linux/Sparc 32bit binary compatibility"
+-	help
+-	  This allows you to run 32-bit binaries on your Ultra.
+-	  Everybody wants this; say Y.
+-
+-config COMPAT
+-	bool
+-	depends on SPARC32_COMPAT
+-	default y
+-
+-config BINFMT_ELF32
+-	tristate "Kernel support for 32-bit ELF binaries"
+-	depends on SPARC32_COMPAT
+-	help
+-	  This allows you to run 32-bit Linux/ELF binaries on your Ultra.
+-	  Everybody wants this; say Y.
+-
+-config BINFMT_AOUT32
+-	bool "Kernel support for 32-bit (ie. SunOS) a.out binaries"
+-	depends on SPARC32_COMPAT
+-	help
+-	  This allows you to run 32-bit a.out format binaries on your Ultra.
+-	  If you want to run SunOS binaries (see SunOS binary emulation below)
+-	  or other a.out binaries, say Y. If unsure, say N.
+-
+-config BINFMT_ELF
+-	tristate "Kernel support for 64-bit ELF binaries"
+-	---help---
+-	  ELF (Executable and Linkable Format) is a format for libraries and
+-	  executables used across different architectures and operating
+-	  systems. Saying Y here will enable your kernel to run ELF binaries
+-	  and enlarge it by about 13 KB. ELF support under Linux has now all
+-	  but replaced the traditional Linux a.out formats (QMAGIC and ZMAGIC)
+-	  because it is portable (this does *not* mean that you will be able
+-	  to run executables from different architectures or operating systems
+-	  however) and makes building run-time libraries very easy. Many new
+-	  executables are distributed solely in ELF format. You definitely
+-	  want to say Y here.
+-
+-	  Information about ELF is contained in the ELF HOWTO available from
+-	  <http://www.linuxdoc.org/docs.html#howto>.
+-
+-	  If you find that after upgrading from Linux kernel 1.2 and saying Y
+-	  here, you still can't run any ELF binaries (they just crash), then
+-	  you'll have to install the newest ELF runtime libraries, including
+-	  ld.so (check the file <file:Documentation/Changes> for location and
+-	  latest version).
+-
+-	  If you want to compile this as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want),
+-	  say M here and read <file:Documentation/modules.txt>.  The module
+-	  will be called binfmt_elf.o. Saying M or N here is dangerous because
+-	  some crucial programs on your system might be in ELF format.
+-
+-config BINFMT_MISC
+-	tristate "Kernel support for MISC binaries"
+-	---help---
+-	  If you say Y here, it will be possible to plug wrapper-driven binary
+-	  formats into the kernel. You will like this especially when you use
+-	  programs that need an interpreter to run like Java, Python or
+-	  Emacs-Lisp. It's also useful if you often run DOS executables under
+-	  the Linux DOS emulator DOSEMU (read the DOSEMU-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>). Once you have
+-	  registered such a binary class with the kernel, you can start one of
+-	  those programs simply by typing in its name at a shell prompt; Linux
+-	  will automatically feed it to the correct interpreter.
+-
+-	  You can do other nice things, too. Read the file
+-	  <file:Documentation/binfmt_misc.txt> to learn how to use this
+-	  feature, and <file:Documentation/java.txt> for information about how
+-	  to include Java support.
+-
+-	  You must say Y to "/proc file system support" (CONFIG_PROC_FS) to
+-	  use this part of the kernel.
+-
+-	  You may say M here for module support and later load the module when
+-	  you have use for it; the module is called binfmt_misc.o. If you
+-	  don't know what to answer at this point, say Y.
+-
+-config SUNOS_EMUL
+-	bool "SunOS binary emulation"
+-	help
+-	  This allows you to run most SunOS binaries.  If you want to do this,
+-	  say Y here and place appropriate files in /usr/gnemul/sunos. See
+-	  <http://www.ultralinux.org/faq.html> for more information.  If you
+-	  want to run SunOS binaries on an Ultra you must also say Y to
+-	  "Kernel support for 32-bit a.out binaries" above.
+-
+-config SOLARIS_EMUL
+-	tristate "Solaris binary emulation (EXPERIMENTAL)"
+-	depends on EXPERIMENTAL
+-	help
+-	  This is experimental code which will enable you to run (many)
+-	  Solaris binaries on your SPARC Linux machine.
+-
+-	  This code is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module will be called solaris.o. If you want to compile it as a
+-	  module, say M here and read <file:Documentation/modules.txt>.
+-
+-source "drivers/parport/Kconfig"
+-
+-config PRINTER
+-	tristate "Parallel printer support"
+-	depends on PARPORT
+-	---help---
+-	  If you intend to attach a printer to the parallel port of your Linux
+-	  box (as opposed to using a serial printer; if the connector at the
+-	  printer has 9 or 25 holes ["female"], then it's serial), say Y.
+-	  Also read the Printing-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>.
+-
+-	  It is possible to share one parallel port among several devices
+-	  (e.g. printer and ZIP drive) and it is safe to compile the
+-	  corresponding drivers into the kernel.  If you want to compile this
+-	  driver as a module however ( = code which can be inserted in and
+-	  removed from the running kernel whenever you want), say M here and
+-	  read <file:Documentation/modules.txt> and
+-	  <file:Documentation/parport.txt>.  The module will be called lp.o.
+-
+-	  If you have several parallel ports, you can specify which ports to
+-	  use with the "lp" kernel command line option.  (Try "man bootparam"
+-	  or see the documentation of your boot loader (lilo or loadlin) about
+-	  how to pass options to the kernel at boot time.)  The syntax of the
+-	  "lp" command line option can be found in <file:drivers/char/lp.c>.
+-
+-	  If you have more than 8 printers, you need to increase the LP_NO
+-	  macro in lp.c and the PARPORT_MAX macro in parport.h.
+-
+-config ENVCTRL
+-	tristate "SUNW, envctrl support"
+-	depends on PCI
+-	help
+-	  Kernel support for temperature and fan monitoring on Sun SME
+-	  machines.
+-
+-	  This code is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module will be called envctrl.o. If you want to compile it as a
+-	  module, say M here and read <file:Documentation/modules.txt>.
+-
+-config DISPLAY7SEG
+-	tristate "7-Segment Display support"
+-	depends on PCI
+-	---help---
+-	  This is the driver for the 7-segment display and LED present on
+-	  Sun Microsystems CompactPCI models CP1400 and CP1500.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module will be called display7seg.o. If you want to compile it
+-	  as a module, say M here and read <file:Documentation/modules.txt>.
+-
+-	  If you do not have a CompactPCI model CP1400 or CP1500, or
+-	  another UltraSPARC-IIi-cEngine boardset with a 7-segment display,
+-	  you should say N to this option.
+-
+-config WATCHDOG_CP1XXX
+-	tristate "CP1XXX Hardware Watchdog support"
+-	depends on PCI
+-	---help---
+-	  This is the driver for the hardware watchdog timers present on
+-	  Sun Microsystems CompactPCI models CP1400 and CP1500.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module will be called cpwatchdog.o. If you want to compile it
+-	  as a module, say M here and read <file:Documentation/modules.txt>.
+-
+-	  If you do not have a CompactPCI model CP1400 or CP1500, or
+-	  another UltraSPARC-IIi-cEngine boardset with hardware watchdog,
+-	  you should say N to this option.
+-
+-config WATCHDOG_RIO
+-	tristate "RIO Hardware Watchdog support"
+-	depends on PCI
+-	help
+-	  Say Y here to support the hardware watchdog capability on Sun RIO
+-	  machines.  The watchdog timeout period is normally one minute but
+-	  can be changed with a boot-time parameter.
+-
+-endmenu
+-
+-source "drivers/video/Kconfig"
+-
+-source "drivers/serial/Kconfig"
+-
+-source "drivers/sbus/char/Kconfig"
+-
+-source "drivers/mtd/Kconfig"
+-
+-
+-menu "Block devices"
+-
+-config BLK_DEV_FD
+-	bool "Normal floppy disk support"
+-	---help---
+-	  If you want to use the floppy disk drive(s) of your PC under Linux,
+-	  say Y. Information about this driver, especially important for IBM
+-	  Thinkpad users, is contained in <file:Documentation/floppy.txt>.
+-	  That file also contains the location of the Floppy driver FAQ as
+-	  well as location of the fdutils package used to configure additional
+-	  parameters of the driver at run time.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module will be called floppy.o. If you want to compile it as a
+-	  module, say M here and read <file:Documentation/modules.txt>.
+-
+-config BLK_DEV_LOOP
+-	tristate "Loopback device support"
+-	---help---
+-	  Saying Y here will allow you to use a regular file as a block
+-	  device; you can then create a file system on that block device and
+-	  mount it just as you would mount other block devices such as hard
+-	  drive partitions, CD-ROM drives or floppy drives. The loop devices
+-	  are block special device files with major number 7 and typically
+-	  called /dev/loop0, /dev/loop1 etc.
+-
+-	  This is useful if you want to check an ISO 9660 file system before
+-	  burning the CD, or if you want to use floppy images without first
+-	  writing them to floppy. Furthermore, some Linux distributions avoid
+-	  the need for a dedicated Linux partition by keeping their complete
+-	  root file system inside a DOS FAT file using this loop device
+-	  driver.
+-
+-	  The loop device driver can also be used to "hide" a file system in a
+-	  disk partition, floppy, or regular file, either using encryption
+-	  (scrambling the data) or steganography (hiding the data in the low
+-	  bits of, say, a sound file). This is also safe if the file resides
+-	  on a remote file server. If you want to do this, you will first have
+-	  to acquire and install a kernel patch from
+-	  <ftp://ftp.kerneli.org/pub/kerneli/>, and then you need to
+-	  say Y to this option.
+-
+-	  Note that alternative ways to use encrypted file systems are
+-	  provided by the cfs package, which can be gotten from
+-	  <ftp://ftp.kerneli.org/pub/kerneli/net-source/>, and the newer tcfs
+-	  package, available at <http://tcfs.dia.unisa.it/>. You do not need
+-	  to say Y here if you want to use one of these. However, using cfs
+-	  requires saying Y to "NFS file system support" below while using
+-	  tcfs requires applying a kernel patch. An alternative steganography
+-	  solution is provided by StegFS, also available from
+-	  <ftp://ftp.kerneli.org/pub/kerneli/net-source/>.
+-
+-	  To use the loop device, you need the losetup utility and a recent
+-	  version of the mount program, both contained in the util-linux
+-	  package. The location and current version number of util-linux is
+-	  contained in the file <file:Documentation/Changes>.
+-
+-	  Note that this loop device has nothing to do with the loopback
+-	  device used for network connections from the machine to itself.
+-
+-	  If you want to compile this driver as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want),
+-	  say M here and read <file:Documentation/modules.txt>. The module
+-	  will be called loop.o.
+-
+-	  Most users will answer N here.
+-
+-config BLK_DEV_NBD
+-	tristate "Network block device support"
+-	depends on NET
+-	---help---
+-	  Saying Y here will allow your computer to be a client for network
+-	  block devices, i.e. it will be able to use block devices exported by
+-	  servers (mount file systems on them etc.). Communication between
+-	  client and server works over TCP/IP networking, but to the client
+-	  program this is hidden: it looks like a regular local file access to
+-	  a block device special file such as /dev/nd0.
+-
+-	  Network block devices also allows you to run a block-device in
+-	  userland (making server and client physically the same computer,
+-	  communicating using the loopback network device).
+-
+-	  Read <file:Documentation/nbd.txt> for more information, especially
+-	  about where to find the server code, which runs in user space and
+-	  does not need special kernel support.
+-
+-	  Note that this has nothing to do with the network file systems NFS
+-	  or Coda; you can say N here even if you intend to use NFS or Coda.
+-
+-	  If you want to compile this driver as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want),
+-	  say M here and read <file:Documentation/modules.txt>. The module
+-	  will be called nbd.o.
+-
+-	  If unsure, say N.
+-
+-source "drivers/md/Kconfig"
+-
+-config BLK_DEV_RAM
+-	tristate "RAM disk support"
+-	---help---
+-	  Saying Y here will allow you to use a portion of your RAM memory as
+-	  a block device, so that you can make file systems on it, read and
+-	  write to it and do all the other things that you can do with normal
+-	  block devices (such as hard drives). It is usually used to load and
+-	  store a copy of a minimal root file system off of a floppy into RAM
+-	  during the initial install of Linux.
+-
+-	  Note that the kernel command line option "ramdisk=XX" is now
+-	  obsolete. For details, read <file:Documentation/ramdisk.txt>.
+-
+-	  If you want to compile this as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want),
+-	  say M and read <file:Documentation/modules.txt>. The module will be
+-	  called rd.o.
+-
+-	  Most normal users won't need the RAM disk functionality, and can
+-	  thus say N here.
+-
+-config BLK_DEV_RAM_SIZE
+-	int "Default RAM disk size"
+-	depends on BLK_DEV_RAM
+-	default "4096"
+-	help
+-	  The default value is 4096. Only change this if you know what are
+-	  you doing. If you are using IBM S/390, then set this to 8192.
+-
+-config BLK_DEV_INITRD
+-	bool "Initial RAM disk (initrd) support"
+-	depends on BLK_DEV_RAM=y
+-	help
+-	  The initial RAM disk is a RAM disk that is loaded by the boot loader
+-	  (loadlin or lilo) and that is mounted as root before the normal boot
+-	  procedure. It is typically used to load modules needed to mount the
+-	  "real" root file system, etc. See <file:Documentation/initrd.txt>
+-	  for details.
+-
+-endmenu
+-
+ 
+ menu "ATA/ATAPI/MFM/RLL device support"
+ 
+@@ -986,7 +312,7 @@ choice
+ 	optional
+ 	depends on SCSI && PCI
+ 
+-source "drivers/scsi/aic7xxx/Kconfig"
++source "drivers/scsi/aic7xxx/Kconfig.aic7xxx"
+ 
+ config SCSI_AIC7XXX_OLD
+ 	tristate "Old driver"
+diff --git a/arch/v850/Kconfig b/arch/v850/Kconfig
+index c96e55a..63e30a1 100644
+--- a/arch/v850/Kconfig
++++ b/arch/v850/Kconfig
+@@ -79,23 +79,23 @@ menu "Processor type and features"
+    # currently support
+    config V850E_MA1
+    	  bool
+-	  depends RTE_CB_MA1
++	  depends on RTE_CB_MA1
+ 	  default y
+    # Similarly for the RTE-V850E/MA1-CB - V850E/TEG
+    config V850E_TEG
+    	  bool
+-	  depends RTE_CB_NB85E
++	  depends on RTE_CB_NB85E
+ 	  default y
+ 
+    # NB85E processor core
+    config V850E_NB85E
+    	  bool
+-	  depends V850E_MA1 || V850E_TEG
++	  depends on V850E_MA1 || V850E_TEG
+ 	  default y
+ 
+    config V850E_MA1_HIGHRES_TIMER
+    	  bool "High resolution timer support"
+-  	  depends V850E_MA1
++	  depends on V850E_MA1
+ 
+ 
+    #### V850E2 processor-specific config
+@@ -103,19 +103,19 @@ menu "Processor type and features"
+    # V850E2 processors
+    config V850E2
+    	  bool
+-	  depends V850E2_SIM85E2C || V850E2_FPGA85E2C || V850E2_ANNA
++	  depends on V850E2_SIM85E2C || V850E2_FPGA85E2C || V850E2_ANNA
+ 	  default y
+ 
+    # Processors based on the NA85E2A core
+    config V850E2_NA85E2A
+    	  bool
+-	  depends V850E2_ANNA
++	  depends on V850E2_ANNA
+ 	  default y
+ 
+    # Processors based on the NA85E2C core
+    config V850E2_NA85E2C
+    	  bool
+-	  depends V850E2_SIM85E2C || V850E2_FPGA85E2C
++	  depends on V850E2_SIM85E2C || V850E2_FPGA85E2C
+ 	  default y
+ 
+ 
+@@ -124,29 +124,29 @@ menu "Processor type and features"
+    # Boards in the RTE-x-CB series
+    config RTE_CB
+    	  bool
+-	  depends RTE_CB_MA1 || RTE_CB_NB85E
++	  depends on RTE_CB_MA1 || RTE_CB_NB85E
+ 	  default y
+ 
+    # Currently, we only support RTE-CB boards using the Multi debugger
+    config RTE_CB_MULTI
+    	  bool
+-	  depends RTE_CB
++	  depends on RTE_CB
+ 	  default y
+ 
+    config RTE_CB_MA1_KSRAM
+    	  bool "Kernel in SRAM (limits size of kernel)"
+-	  depends RTE_CB_MA1 && RTE_CB_MULTI
++	  depends on RTE_CB_MA1 && RTE_CB_MULTI
+ 	  default n
+ 
+    config RTE_MB_A_PCI
+    	  bool "Mother-A PCI support"
+-	  depends RTE_CB
++	  depends on RTE_CB
+ 	  default y
+ 
+    # The GBUS is used to talk to the RTE-MOTHER-A board
+    config RTE_GBUS_INT
+    	  bool
+-	  depends RTE_MB_A_PCI
++	  depends on RTE_MB_A_PCI
+ 	  default y
+ 
+    # The only PCI bus we support is on the RTE-MOTHER-A board
+@@ -159,12 +159,12 @@ menu "Processor type and features"
+ 
+    config ROM_KERNEL
+    	  bool "Kernel in ROM"
+-	  depends V850E2_ANNA || (RTE_CB && !RTE_CB_MULTI)
++	  depends on V850E2_ANNA || (RTE_CB && !RTE_CB_MULTI)
+ 
+    # Some platforms pre-zero memory, in which case the kernel doesn't need to
+    config ZERO_BSS
+    	  bool
+-	  depends !V850E2_SIM85E2C
++	  depends on !V850E2_SIM85E2C
+ 	  default y
+ 
+    # The crappy-ass zone allocator requires that the start of allocatable
+@@ -175,7 +175,7 @@ menu "Processor type and features"
+ 
+    config TIME_BOOTUP
+    	  bool "Time bootup"
+-	  depends V850E_MA1_HIGHRES_TIMER
++	  depends on V850E_MA1_HIGHRES_TIMER
+ 
+    config RESET_GUARD
+    	  bool "Reset Guard"
+diff --git a/drivers/mtd/maps/Kconfig b/drivers/mtd/maps/Kconfig
+index ce3e628..02c0c47 100644
+--- a/drivers/mtd/maps/Kconfig
++++ b/drivers/mtd/maps/Kconfig
+@@ -180,7 +180,7 @@ config MTD_CFI_FLAGADM
+ 	tristate "CFI Flash device mapping on FlagaDM"
+ 	depends on PPC && MTD_CFI
+ 	help
+-	  Mapping for the Flaga digital module. If you don´t have one, ignore
++	  Mapping for the Flaga digital module. If you don't have one, ignore
+ 	  this setting.
+ 
+ config MTD_CSTM_MIPS_IXX

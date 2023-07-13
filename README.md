@@ -1,69 +1,27 @@
 # Linux-kernels
 
-<p align="center">
-    List of linux kernel versions and download links in JSON
-    <br>
-    <a href="https://twitter.com/intent/follow?screen_name=podalirius_" title="Follow"><img src="https://img.shields.io/twitter/follow/podalirius_?label=Podalirius&style=social"></a>
-    <a href="https://www.youtube.com/c/Podalirius_?sub_confirmation=1" title="Subscribe"><img alt="YouTube Channel Subscribers" src="https://img.shields.io/youtube/channel/subscribers/UCF_x5O7CSfr82AfNVTKOv_A?style=social"></a>
-    <br>
-</p>
+```bash
+docker build -t test .
+docker run --rm -it test > kernels.json
+mkdir -p archives
+jq  '.[].link' kernels.json | xargs -I {} -P8 curl --no-clobber {} -O --output-dir archives
+jq  '.[].link' kernels.json | xargs -I {} -P8 wget --no-clobber {} -P archives
 
-## Data format
-
-```json
-{
-    "kernels": {
-        "1": {
-            "0": [
-                {
-                    "link": "https://cdn.kernel.org/pub/linux/kernel/v1.0/linux-1.0.patch.alpha.bz2",
-                    "version": "1.0.patch.alpha",
-                    "major": "1",
-                    "minor": "0"
-                },
-                {
-                    "link": "https://cdn.kernel.org/pub/linux/kernel/1.0.patch.alphalinux-1.0.patch.alpha.gz",
-                    "version": "1.0.patch.alpha",
-                    "major": "1",
-                    "minor": "0"
-                },
-                {
-                    "link": "https://cdn.kernel.org/pub/linux/kernel/1.0.patch.alphalinux-1.0.patch.alpha.sign",
-                    "version": "1.0.patch.alpha",
-                    "major": "1",
-                    "minor": "0"
-                }
-              ...
-              ]
-        }
-    }
-}
+cat kernels.json | jq  '.[].link' | uniq | sed -r 's#https://cdn.kernel.org/pub/linux/kernel/v[0-9]../linux-##g' | sed 's/.tar.xz//g' | jq --slurp '.' | jq  '.[] | [{ "key": ., "value": ""}] | from_entries' | jq -s add
 ```
 
-## Generate kernels.json
-
-You can generate/update this list of kernel in JSON locally:
-
-```
-$ ./get_kernels.py 
-[+] Parsing v1.0/ ...
-[+] Parsing v1.1/ ...
-[+] Parsing v1.2/ ...
-[+] Parsing v1.3/ ...
-[+] Parsing v2.0/ ...
-[+] Parsing v2.1/ ...
-[+] Parsing v2.2/ ...
-[+] Parsing v2.3/ ...
-[+] Parsing v2.4/ ...
-[+] Parsing v2.5/ ...
-[+] Parsing v2.6/ ...
-[+] Parsing v3.0/ ...
-[+] Parsing v3.x/ ...
-[+] Parsing v4.x/ ...
-[+] Parsing v5.x/ ...
-[+] Parsing v6.x/ ...
-```
-
-## Contributing
-
-Pull requests are welcome. Feel free to open an issue if you want to add other features.
+- /home/yannp/Documents/linux-kernels/kernels/3.0.2/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.18/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.19/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.20/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.21/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.22/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.23/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.0.2/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.12.29/arch/arm/mach-at91/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.12.30/arch/arm/mach-at91/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.12.31/arch/arm/mach-at91/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.12.32/arch/arm/mach-at91/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.12.3/arch/arm/mach-at91/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.2.99/arch/arm/plat-tcc/Kconfig
+- /home/yannp/Documents/linux-kernels/kernels/3.2/arch/arm/plat-tcc/Kconfig

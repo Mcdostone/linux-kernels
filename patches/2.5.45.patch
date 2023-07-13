@@ -1,0 +1,771 @@
+diff --git a/arch/arm/mach-sa1100/Kconfig b/arch/arm/mach-sa1100/Kconfig
+index 7255a72..61afbbc 100644
+--- a/arch/arm/mach-sa1100/Kconfig
++++ b/arch/arm/mach-sa1100/Kconfig
+@@ -270,7 +270,7 @@ config SA1100_PFS168
+ 	bool "Tulsa"
+ 	depends on ARCH_SA1100
+ 	help
+-	  The Radisys Corp. PFS-168 (aka Tulsa) is an Intel® StrongArm® SA-1110 based
++	  The Radisys Corp. PFS-168 (aka Tulsa) is an IntelÂ® StrongArmÂ® SA-1110 based
+ 	  computer which includes the SA-1111 Microprocessor Companion Chip and other
+ 	  custom I/O designed to add connectivity and multimedia features for vending
+ 	  and business machine applications. Say Y here if you require support for
+diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
+index 8ed5512..a8b6964 100644
+--- a/arch/mips/Kconfig
++++ b/arch/mips/Kconfig
+@@ -905,7 +905,7 @@ source "drivers/scsi/Kconfig"
+ endmenu
+ 
+ 
+-if !DECSTATION" && !SGI_IP22
++if !DECSTATION && !SGI_IP22
+ source "drivers/message/i2o/Kconfig"
+ endif
+ 
+diff --git a/arch/ppc/Kconfig b/arch/ppc/Kconfig
+index c2febc1..a81b4a2 100644
+--- a/arch/ppc/Kconfig
++++ b/arch/ppc/Kconfig
+@@ -336,7 +336,7 @@ config RPXLITE
+ 
+ 	  HERMES:
+ 	  Hermes-Pro ISDN/LAN router with integrated 8 x hub
+-	  Manufacturer: Multidata Gesellschaft für Datentechnik und Informatik
++	  Manufacturer: Multidata Gesellschaft fÃ¼r Datentechnik und Informatik
+ 	  <http://www.multidata.de/>
+ 	  Date of Release: 2000 (?)
+ 	  End of life: -
+@@ -1139,715 +1139,6 @@ config A2232
+ 	  Amiga 2000 and other Zorro-bus machines, dating from 1989.  At
+ 	  a max of 19,200 bps, the ports are served by a 6551 ACIA UART chip
+ 	  each, plus a 8520 CIA, and a master 6502 CPU and buffer as well. The
+-	  ports were connected with 8 pin DIN connectors on the card bracket,
+-	  for which 8 pin to DB25 adapters were supplied. The card also had
+-	  jumpers internally to toggle various pinning configurations.
+-
+-	  This driver can be built as a module; but then "generic_serial.o"
+-	  will also be built as a module. This has to be loaded before
+-	  "ser_a2232.o". If you want to do this, answer M here and read
+-	  "<file:Documentation/modules.txt>".
+-
+-config WHIPPET_SERIAL
+-	tristate "Hisoft Whippet PCMCIA serial support"
+-	depends on AMIGA_PCMCIA
+-	help
+-	  HiSoft has a web page at <http://www.hisoft.co.uk/>, but there
+-	  is no listing for the Whippet in their Amiga section.
+-
+-config APNE
+-	tristate "PCMCIA NE2000 support"
+-	depends on AMIGA_PCMCIA
+-	help
+-	  If you have a PCMCIA NE2000 compatible adapter, say Y.  Otherwise,
+-	  say N.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you
+-	  want). The module is called apne.o. If you want to compile it as a
+-	  module, say M here and read <file:Documentation/modules.txt>.
+-
+-config SERIAL_CONSOLE
+-	bool "Support for serial port console"
+-	depends on APUS && (AMIGA_BUILTIN_SERIAL=y || GVPIOEXT=y || MULTIFACE_III_TTY=y)
+-
+-config HEARTBEAT
+-	bool "Use power LED as a heartbeat"
+-	depends on APUS
+-	help
+-	  Use the power-on LED on your machine as a load meter.  The exact
+-	  behavior is platform-dependent, but normally the flash frequency is
+-	  a hyperbolic function of the 5-minute load average.
+-
+-config PROC_HARDWARE
+-	bool "/proc/hardware support"
+-	depends on APUS
+-
+-source "drivers/zorro/Kconfig"
+-
+-endmenu
+-
+-
+-menu "Advanced setup"
+-
+-config ADVANCED_OPTIONS
+-	bool "Prompt for advanced kernel configuration options"
+-	help
+-	  This option will enable prompting for a variety of advanced kernel
+-	  configuration options.  These options can cause the kernel to not
+-	  work if they are set incorrectly, but can be used to optimize certain
+-	  aspects of kernel memory management.
+-
+-	  Unless you know what you are doing, say N here.
+-
+-config HIGHMEM_START_BOOL
+-	bool "Set high memory pool address"
+-	depends on ADVANCED_OPTIONS && HIGHMEM
+-	help
+-	  This option allows you to set the base address of the kernel virtual
+-	  area used to map high memory pages.  This can be useful in
+-	  optimizing the layout of kernel virtual memory.
+-
+-	  Say N here unless you know what you are doing.
+-
+-config HIGHMEM_START
+-	hex "Virtual start address of high memory pool"
+-	depends on HIGHMEM_START_BOOL
+-	default "0xfe000000"
+-
+-config LOWMEM_SIZE_BOOL
+-	bool "Set maximum low memory"
+-	depends on ADVANCED_OPTIONS && HIGHMEM
+-	help
+-	  This option allows you to set the maximum amount of memory which
+-	  will be used as "low memory", that is, memory which the kernel can
+-	  access directly, without having to set up a kernel virtual mapping.
+-	  This can be useful in optimizing the layout of kernel virtual
+-	  memory.
+-
+-	  Say N here unless you know what you are doing.
+-
+-config LOWMEM_SIZE
+-	hex "Maximum low memory size (in bytes)"
+-	depends on LOWMEM_SIZE_BOOL
+-	default "0x20000000"
+-
+-config KERNEL_START_BOOL
+-	bool "Set custom kernel base address"
+-	depends on ADVANCED_OPTIONS
+-	help
+-	  This option allows you to set the kernel virtual address at which
+-	  the kernel will map low memory (the kernel image will be linked at
+-	  this address).  This can be useful in optimizing the virtual memory
+-	  layout of the system.
+-
+-	  Say N here unless you know what you are doing.
+-
+-config KERNEL_START
+-	hex "Virtual address of kernel base"
+-	depends on KERNEL_START_BOOL
+-	default "0xc0000000"
+-
+-config TASK_SIZE_BOOL
+-	bool "Set custom user task size"
+-	depends on ADVANCED_OPTIONS
+-	help
+-	  This option allows you to set the amount of virtual address space
+-	  allocated to user tasks.  This can be useful in optimizing the
+-	  virtual memory layout of the system.
+-
+-	  Say N here unless you know what you are doing.
+-
+-config TASK_SIZE
+-	hex "Size of user task space"
+-	depends on TASK_SIZE_BOOL
+-	default "0x80000000"
+-
+-config PIN_TLB
+-	bool "Pinned Kernel TLBs (860 ONLY)"
+-	depends on ADVANCED_OPTIONS && 8xx
+-
+-config BOOT_LOAD_BOOL
+-	bool "Set the boot link/load address"
+-	depends on ADVANCED_OPTIONS && !ALL_PPC
+-	help
+-	  This option allows you to set the initial load address of the zImage
+-	  or zImage.initrd file.  This can be useful if you are on a board
+-	  which has a small amount of memory.
+-
+-	  Say N here unless you know what you are doing.
+-
+-config BOOT_LOAD
+-	hex "Link/load address for booting"
+-	depends on BOOT_LOAD_BOOL
+-	default "0x00400000"
+-
+-endmenu
+-
+-source "drivers/mtd/Kconfig"
+-
+-source "drivers/pnp/Kconfig"
+-
+-source "drivers/block/Kconfig"
+-
+-source "drivers/md/Kconfig"
+-
+-
+-menu "ATA/IDE/MFM/RLL support"
+-
+-config IDE
+-	tristate "ATA/IDE/MFM/RLL support"
+-	---help---
+-	  If you say Y here, your kernel will be able to manage low cost mass
+-	  storage units such as ATA/(E)IDE and ATAPI units. The most common
+-	  cases are IDE hard drives and ATAPI CD-ROM drives.
+-
+-	  If your system is pure SCSI and doesn't use these interfaces, you
+-	  can say N here.
+-
+-	  Integrated Disk Electronics (IDE aka ATA-1) is a connecting standard
+-	  for mass storage units such as hard disks. It was designed by
+-	  Western Digital and Compaq Computer in 1984.  Quite a number of
+-	  disks use the IDE interface.
+-
+-	  Fast-IDE is ATA-2 (also named Fast ATA), Enhanced IDE (EIDE) is
+-	  ATA-3. It provides support for larger disks (up to 8.4GB by means of
+-	  the LBA standard), more disks (4 instead of 2) and for other mass
+-	  storage units such as tapes and cdrom. UDMA/33 (aka UltraDMA/33) is
+-	  ATA-4 and provides faster (and more CPU friendly) transfer modes
+-	  than previous PIO (Programmed processor Input/Output) from previous
+-	  ATA/IDE standards by means of fast DMA controllers.
+-
+-	  ATA Packet Interface (ATAPI) is a protocol used by EIDE tape and
+-	  CD-ROM drives, similar in many respects to the SCSI protocol.
+-
+-	  SMART IDE (Self Monitoring, Analysis and Reporting Technology) was
+-	  designed in order to prevent data corruption and disk crash by
+-	  detecting pre hardware failure conditions (heat, access time, and
+-	  the like...). Disks built since June 1995 may follow this standard.
+-	  The kernel itself don't manage this; however there are quite a
+-	  number of user programs such as smart that can query the status of
+-	  SMART parameters disk.
+-
+-	  If you want to compile this driver as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want),
+-	  say M here and read <file:Documentation/modules.txt>. The module
+-	  will be called ide.o.
+-
+-	  For further information, please read <file:Documentation/ide.txt>.
+-
+-	  If unsure, say Y.
+-
+-source "drivers/ide/Kconfig"
+-
+-endmenu
+-
+-
+-menu "SCSI support"
+-
+-config SCSI
+-	tristate "SCSI support"
+-	---help---
+-	  If you want to use a SCSI hard disk, SCSI tape drive, SCSI CD-ROM or
+-	  any other SCSI device under Linux, say Y and make sure that you know
+-	  the name of your SCSI host adapter (the card inside your computer
+-	  that "speaks" the SCSI protocol, also called SCSI controller),
+-	  because you will be asked for it.
+-
+-	  You also need to say Y here if you want support for the parallel
+-	  port version of the 100 MB IOMEGA ZIP drive.
+-
+-	  This driver is also available as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want).
+-	  The module will be called scsi_mod.o.  If you want to compile it as
+-	  a module, say M here and read <file:Documentation/modules.txt> and
+-	  <file:Documentation/scsi.txt>.  However, do not compile this as a
+-	  module if your root file system (the one containing the directory /)
+-	  is located on a SCSI device.
+-
+-source "drivers/scsi/Kconfig"
+-
+-endmenu
+-
+-source "drivers/message/fusion/Kconfig"
+-
+-source "drivers/ieee1394/Kconfig"
+-
+-source "drivers/message/i2o/Kconfig"
+-
+-source "net/Kconfig"
+-
+-
+-menu "Network device support"
+-	depends on NET
+-
+-config NETDEVICES
+-	bool "Network device support"
+-	---help---
+-	  You can say N here if you don't intend to connect your Linux box to
+-	  any other computer at all or if all your connections will be over a
+-	  telephone line with a modem either via UUCP (UUCP is a protocol to
+-	  forward mail and news between unix hosts over telephone lines; read
+-	  the UUCP-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>) or dialing up a shell
+-	  account or a BBS, even using term (term is a program which gives you
+-	  almost full Internet connectivity if you have a regular dial up
+-	  shell account on some Internet connected Unix computer. Read
+-	  <http://www.bart.nl/~patrickr/term-howto/Term-HOWTO.html>).
+-
+-	  You'll have to say Y if your computer contains a network card that
+-	  you want to use under Linux (make sure you know its name because you
+-	  will be asked for it and read the Ethernet-HOWTO (especially if you
+-	  plan to use more than one network card under Linux)) or if you want
+-	  to use SLIP (Serial Line Internet Protocol is the protocol used to
+-	  send Internet traffic over telephone lines or null modem cables) or
+-	  CSLIP (compressed SLIP) or PPP (Point to Point Protocol, a better
+-	  and newer replacement for SLIP) or PLIP (Parallel Line Internet
+-	  Protocol is mainly used to create a mini network by connecting the
+-	  parallel ports of two local machines) or AX.25/KISS (protocol for
+-	  sending Internet traffic over amateur radio links).
+-
+-	  Make sure to read the NET-3-HOWTO. Eventually, you will have to read
+-	  Olaf Kirch's excellent and free book "Network Administrator's
+-	  Guide", to be found in <http://www.linuxdoc.org/docs.html#guide>. If
+-	  unsure, say Y.
+-
+-source "drivers/net/Kconfig"
+-
+-source "drivers/atm/Kconfig"
+-
+-endmenu
+-
+-source "net/ax25/Kconfig"
+-
+-source "net/irda/Kconfig"
+-
+-source "drivers/isdn/Kconfig"
+-
+-
+-menu "Console drivers"
+-
+-config VGA_CONSOLE
+-	bool "VGA text console"
+-	depends on !4xx && !8xx
+-	help
+-	  Saying Y here will allow you to use Linux in text mode through a
+-	  display that complies with the generic VGA standard.  This can be
+-	  useful on PReP systems and IBM RS/6000 or pSeries machines but is of
+-	  limited usefulness on Apple machines.
+-
+-	  Say N here if you have an Apple machine.
+-
+-source "drivers/video/Kconfig"
+-
+-endmenu
+-
+-
+-menu "iSeries device drivers"
+-	depends on PPC_ISERIES
+-
+-config VIOCONS
+-	tristate "iSeries Virtual Console Support"
+-
+-config VIODASD
+-	tristate "iSeries Virtual I/O disk support"
+-
+-config VIODASD_IDE
+-	bool "iSeries Virtual disk IDE emulation"
+-	depends on VIODASD
+-
+-config VIOCD
+-	tristate "iSeries Virtual I/O CD support"
+-
+-config VIOCD_AZTECH
+-	bool "iSeries Virtual CD Aztech emulation"
+-	depends on VIOCD
+-
+-config VIOTAPE
+-	tristate "iSeries Virtual Tape Support"
+-
+-config VETH
+-	tristate "iSeries Virtual Ethernet driver support"
+-
+-config VIOPATH
+-	bool
+-	depends on VIOCONS || VIODASD || VIOTAPE || VIOCD
+-	default y
+-
+-config CD_NO_IDESCSI
+-	bool
+-	depends on VIOCD=y
+-	default y
+-	---help---
+-	  If you have a CD-ROM drive that is neither SCSI nor IDE/ATAPI, say Y
+-	  here, otherwise N. Read the CD-ROM-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>.
+-
+-	  Note that the answer to this question doesn't directly affect the
+-	  kernel: saying N will just cause the configurator to skip all
+-	  the questions about these CD-ROM drives. If you are unsure what you
+-	  have, say Y and find out whether you have one of the following
+-	  drives.
+-
+-	  For each of these drivers, a file Documentation/cdrom/{driver_name}
+-	  exists. Especially in cases where you do not know exactly which kind
+-	  of drive you have you should read there. Most of these drivers use a
+-	  file drivers/cdrom/{driver_name}.h where you can define your
+-	  interface parameters and switch some internal goodies.
+-
+-	  All these CD-ROM drivers are also usable as a module ( = code which
+-	  can be inserted in and removed from the running kernel whenever you
+-	  want). If you want to compile them as module, say M instead of Y and
+-	  read <file:Documentation/modules.txt>.
+-
+-	  If you want to use any of these CD-ROM drivers, you also have to
+-	  answer Y or M to "ISO 9660 CD-ROM file system support" below (this
+-	  answer will get "defaulted" for you if you enable any of the Linux
+-	  CD-ROM drivers).
+-
+-config BLK_DEV_IDECD
+-	tristate
+-	depends on VIOCD=y
+-	default y
+-
+-endmenu
+-
+-
+-menu "Old CD-ROM drivers (not SCSI, not IDE)"
+-	depends on !PPC_ISERIES
+-
+-config CD_NO_IDESCSI
+-	bool "Support non-SCSI/IDE/ATAPI CDROM drives"
+-
+-source "drivers/cdrom/Kconfig"
+-
+-endmenu
+-
+-source "drivers/input/Kconfig"
+-
+-
+-menu "Macintosh device drivers"
+-
+-# we want to change this to something like CONFIG_SYSCTRL_CUDA/PMU
+-config ADB_CUDA
+-	bool "Support for CUDA based PowerMacs"
+-	depends on ALL_PPC
+-	help
+-	  This provides support for CUDA based Power Macintosh systems.  This
+-	  includes most OldWorld PowerMacs, the first generation iMacs, the
+-	  Blue&White G3 and the "Yikes" G4 (PCI Graphics).  All later models
+-	  should use CONFIG_ADB_PMU instead.  It is safe to say Y here even if
+-	  your machine doesn't have a CUDA.
+-
+-	  If unsure say Y.
+-
+-config ADB_PMU
+-	bool "Support for PMU  based PowerMacs"
+-	depends on ALL_PPC
+-	help
+-	  On PowerBooks, iBooks, and recent iMacs and Power Macintoshes, the
+-	  PMU is an embedded microprocessor whose primary function is to
+-	  control system power, and battery charging on the portable models.
+-	  The PMU also controls the ADB (Apple Desktop Bus) which connects to
+-	  the keyboard and mouse on some machines, as well as the non-volatile
+-	  RAM and the RTC (real time clock) chip.  Say Y to enable support for
+-	  this device; you should do so if your machine is one of those
+-	  mentioned above.
+-
+-config PMAC_PBOOK
+-	bool "Power management support for PowerBooks"
+-	depends on ADB_PMU
+-	---help---
+-	  This provides support for putting a PowerBook to sleep; it also
+-	  enables media bay support.  Power management works on the
+-	  PB2400/3400/3500, Wallstreet, Lombard, and Bronze PowerBook G3 and
+-	  the Titanium Powerbook G4, as well as the iBooks.  You should get
+-	  the power management daemon, pmud, to make it work and you must have
+-	  the /dev/pmu device (see the pmud README).
+-
+-	  Get pmud from <ftp://ftp.samba.org/pub/ppclinux/pmud/>.
+-
+-	  If you have a PowerBook, you should say Y here.
+-
+-	  You may also want to compile the dma sound driver as a module and
+-	  have it autoloaded. The act of removing the module shuts down the
+-	  sound hardware for more power savings.
+-
+-config PM
+-	bool
+-	depends on ALL_PPC && ADB_PMU && PMAC_PBOOK
+-	default y
+-
+-config PMAC_APM_EMU
+-	tristate "APM emulation"
+-	depends on PMAC_PBOOK
+-
+-# made a separate option since backlight may end up beeing used
+-# on non-powerbook machines (but only on PMU based ones AFAIK)
+-config PMAC_BACKLIGHT
+-	bool "Backlight control for LCD screens"
+-	depends on ADB_PMU
+-	help
+-	  Say Y here to build in code to manage the LCD backlight on a
+-	  Macintosh PowerBook.  With this code, the backlight will be turned
+-	  on and off appropriately on power-management and lid-open/lid-closed
+-	  events; also, the PowerBook button device will be enabled so you can
+-	  change the screen brightness.
+-
+-config MAC_FLOPPY
+-	bool "Support for PowerMac floppy"
+-	depends on ALL_PPC
+-	help
+-	  If you have a SWIM-3 (Super Woz Integrated Machine 3; from Apple)
+-	  floppy controller, say Y here. Most commonly found in PowerMacs.
+-
+-config MAC_SERIAL
+-	tristate "Support for PowerMac serial ports"
+-	depends on ALL_PPC
+-	help
+-	  If you have Macintosh style serial ports (8 pin mini-DIN), say Y
+-	  here. If you also have regular serial ports and enable the driver
+-	  for them, you can't currently use the serial console feature.
+-
+-config SERIAL_CONSOLE
+-	bool "Support for console on serial port"
+-	depends on ALL_PPC && MAC_SERIAL=y
+-
+-config ADB
+-	bool "Apple Desktop Bus (ADB) support"
+-	depends on ALL_PPC
+-	help
+-	  Apple Desktop Bus (ADB) support is for support of devices which
+-	  are connected to an ADB port.  ADB devices tend to have 4 pins.
+-	  If you have an Apple Macintosh prior to the iMac, an iBook or
+-	  PowerBook, or a "Blue and White G3", you probably want to say Y
+-	  here.  Otherwise say N.
+-
+-config ADB_MACIO
+-	bool "Include MacIO (CHRP) ADB driver"
+-	depends on ADB
+-	help
+-	  Say Y here to include direct support for the ADB controller in the
+-	  Hydra chip used on PowerPC Macintoshes of the CHRP type.  (The Hydra
+-	  also includes a MESH II SCSI controller, DBDMA controller, VIA chip,
+-	  OpenPIC controller and two RS422/Geoports.)
+-
+-config INPUT_ADBHID
+-	bool "Support for ADB input devices (keyboard, mice, ...)"
+-	depends on ADB && INPUT=y
+-	help
+-	  Say Y here if you want to have ADB (Apple Desktop Bus) HID devices
+-	  such as keyboards, mice, joysticks, trackpads  or graphic tablets
+-	  handled by the input layer.  If you say Y here, make sure to say Y to
+-	  the corresponding drivers "Keyboard support" (CONFIG_INPUT_KEYBDEV),
+-	  "Mouse Support" (CONFIG_INPUT_MOUSEDEV) and "Event interface
+-	  support" (CONFIG_INPUT_EVDEV) as well.
+-
+-	  If unsure, say Y.
+-
+-config MAC_EMUMOUSEBTN
+-	bool "Support for mouse button 2+3 emulation"
+-	depends on INPUT_ADBHID
+-	help
+-	  This provides generic support for emulating the 2nd and 3rd mouse
+-	  button with keypresses.  If you say Y here, the emulation is still
+-	  disabled by default.  The emulation is controlled by these sysctl
+-	  entries:
+-	  /proc/sys/dev/mac_hid/mouse_button_emulation
+-	  /proc/sys/dev/mac_hid/mouse_button2_keycode
+-	  /proc/sys/dev/mac_hid/mouse_button3_keycode
+-
+-	  If you have an Apple machine with a 1-button mouse, say Y here.
+-
+-config ANSLCD
+-	bool "Support for ANS LCD display"
+-	depends on ADB_CUDA
+-
+-endmenu
+-
+-source "drivers/char/Kconfig"
+-
+-source "drivers/media/Kconfig"
+-
+-source "fs/Kconfig"
+-
+-
+-menu "Sound"
+-
+-config SOUND
+-	tristate "Sound card support"
+-	---help---
+-	  If you have a sound card in your computer, i.e. if it can say more
+-	  than an occasional beep, say Y.  Be sure to have all the information
+-	  about your sound card and its configuration down (I/O port,
+-	  interrupt and DMA channel), because you will be asked for it.
+-
+-	  You want to read the Sound-HOWTO, available from
+-	  <http://www.linuxdoc.org/docs.html#howto>. General information about
+-	  the modular sound system is contained in the files
+-	  <file:Documentation/sound/Introduction>.  The file
+-	  <file:Documentation/sound/README.OSS> contains some slightly
+-	  outdated but still useful information as well.
+-
+-	  If you have a PnP sound card and you want to configure it at boot
+-	  time using the ISA PnP tools (read
+-	  <http://www.roestock.demon.co.uk/isapnptools/>), then you need to
+-	  compile the sound card support as a module ( = code which can be
+-	  inserted in and removed from the running kernel whenever you want)
+-	  and load that module after the PnP configuration is finished.  To do
+-	  this, say M here and read <file:Documentation/modules.txt> as well
+-	  as <file:Documentation/sound/README.modules>; the module will be
+-	  called soundcore.o.
+-
+-	  I'm told that even without a sound card, you can make your computer
+-	  say more than an occasional beep, by programming the PC speaker.
+-	  Kernel patches and supporting utilities to do that are in the pcsp
+-	  package, available at <ftp://ftp.infradead.org/pub/pcsp/>.
+-
+-source "sound/oss/dmasound/Kconfig"
+-
+-source "sound/Kconfig"
+-
+-endmenu
+-
+-source "arch/ppc/8xx_io/Kconfig"
+-
+-source "arch/ppc/8260_io/Kconfig"
+-
+-
+-menu "IBM 40x options"
+-	depends on 40x
+-
+-config SERIAL_SICC
+-	bool "SICC Serial port"
+-	depends on STB03xxx
+-
+-config UART1_DFLT_CONSOLE
+-	bool
+-	depends on SERIAL_SICC && UART0_TTYS1
+-	default y
+-
+-config SERIAL_SICC_CONSOLE
+-	bool
+-	depends on SERIAL_SICC && UART0_TTYS1
+-	default y
+-
+-endmenu
+-
+-source "drivers/usb/Kconfig"
+-
+-source "net/bluetooth/Kconfig"
+-
+-source "lib/Kconfig"
+-
+-
+-menu "Kernel hacking"
+-
+-config DEBUG_KERNEL
+-	bool "Kernel debugging"
+-
+-config DEBUG_SLAB
+-	bool "Debug memory allocations"
+-	depends on DEBUG_KERNEL
+-
+-config MAGIC_SYSRQ
+-	bool "Magic SysRq key"
+-	depends on DEBUG_KERNEL
+-	help
+-	  If you say Y here, you will have some control over the system even
+-	  if the system crashes for example during kernel debugging (e.g., you
+-	  will be able to flush the buffer cache to disk, reboot the system
+-	  immediately or dump some status information). This is accomplished
+-	  by pressing various keys while holding SysRq (Alt+PrintScreen). It
+-	  also works on a serial console (on PC hardware at least), if you
+-	  send a BREAK and then within 5 seconds a command keypress. The
+-	  keys are documented in <file:Documentation/sysrq.txt>. Don't say Y
+-	  unless you really know what this hack does.
+-
+-config DEBUG_SPINLOCK
+-	bool "Spinlock debugging"
+-	depends on DEBUG_KERNEL
+-	help
+-	  Say Y here and to CONFIG_SMP to include code to check for missing
+-	  spinlock initialization and some other common spinlock errors.
+-
+-config DEBUG_HIGHMEM
+-	bool "Highmem debugging"
+-	depends on DEBUG_KERNEL && HIGHMEM
+-
+-config KALLSYMS
+-	bool "Load all symbols for debugging/kksymoops"
+-	depends on DEBUG_KERNEL
+-
+-config KGDB
+-	bool "Include kgdb kernel debugger"
+-	depends on DEBUG_KERNEL
+-	help
+-	  Include in-kernel hooks for kgdb, the Linux kernel source level
+-	  debugger.  See <http://kgdb.sourceforge.net/> for more information.
+-	  Unless you are intending to debug the kernel, say N here.
+-
+-choice
+-	prompt "Serial Port"
+-	depends on KGDB
+-	default KGDB_TTYS1
+-
+-config KGDB_TTYS0
+-	bool "ttyS0"
+-
+-config KGDB_TTYS1
+-	bool "ttyS1"
+-
+-config KGDB_TTYS2
+-	bool "ttyS2"
+-
+-config KGDB_TTYS3
+-	bool "ttyS3"
+-
+-endchoice
+-
+-config XMON
+-	bool "Include xmon kernel debugger"
+-	depends on DEBUG_KERNEL
+-	help
+-	  Include in-kernel hooks for the xmon kernel monitor/debugger.
+-	  Unless you are intending to debug the kernel, say N here.
+-
+-config BDI_SWITCH
+-	bool "Include BDI-2000 user context switcher"
+-	depends on DEBUG_KERNEL
+-	help
+-	  Include in-kernel support for the Abatron BDI2000 debugger.
+-	  Unless you are intending to debug the kernel with one of these
+-	  machines, say N here.
+-
+-config MORE_COMPILE_OPTIONS
+-	bool "Add any additional compile options"
+-	depends on DEBUG_KERNEL && (KGDB || XMON || BDI_SWITCH)
+-	help
+-	  If you want to add additional CFLAGS to the kernel build, such as -g
+-	  for KGDB or the BDI2000, enable this option and then enter what you
+-	  would like to add in the next question.
+-
+-config COMPILE_OPTIONS
+-	string "Additional compile arguments"
+-	depends on MORE_COMPILE_OPTIONS
+-	default "-g -ggdb"
+-
+-config BOOTX_TEXT
+-	bool "Support for early boot text console (BootX or OpenFirmware only)"
+-	depends on ALL_PPC
+-	help
+-	  Say Y here to see progress messages from the boot firmware in text
+-	  mode. Requires either BootX or Open Firmware.
+-
+-config SERIAL_TEXT_DEBUG
+-	bool "Support for early boot texts over serial port"
+-	depends on 4xx || GT64260 || LOPEC || MCPN765 || PPLUS || PRPMC800 || SANDPOINT || ZX4500
+-
+-endmenu
+-
+-source "security/Kconfig"
+-
+-source "crypto/Kconfig"
++	  ports were connec
+ 
++endmenu
+\ No newline at end of file
+diff --git a/drivers/mtd/maps/Kconfig b/drivers/mtd/maps/Kconfig
+index f1a9bd7..5e26f8d 100644
+--- a/drivers/mtd/maps/Kconfig
++++ b/drivers/mtd/maps/Kconfig
+@@ -180,7 +180,7 @@ config MTD_CFI_FLAGADM
+ 	tristate "CFI Flash device mapping on FlagaDM"
+ 	depends on PPC && MTD_CFI
+ 	help
+-	  Mapping for the Flaga digital module. If you don´t have one, ignore
++	  Mapping for the Flaga digital module. If you don't have one, ignore
+ 	  this setting.
+ 
+ config MTD_CSTM_MIPS_IXX
