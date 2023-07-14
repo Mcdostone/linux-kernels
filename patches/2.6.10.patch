@@ -1,0 +1,13 @@
+diff --git a/drivers/mtd/maps/Kconfig b/drivers/mtd/maps/Kconfig
+index 7833587c..3e139e08 100644
+--- a/drivers/mtd/maps/Kconfig
++++ b/drivers/mtd/maps/Kconfig
+@@ -354,7 +354,7 @@ config MTD_CFI_FLAGADM
+ 	tristate "CFI Flash device mapping on FlagaDM"
+ 	depends on PPC32 && 8xx && MTD_CFI
+ 	help
+-	  Mapping for the Flaga digital module. If you don´t have one, ignore
++	  Mapping for the Flaga digital module. If you don't have one, ignore
+ 	  this setting.
+ 
+ config MTD_BEECH

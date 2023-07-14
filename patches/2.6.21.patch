@@ -1,0 +1,28 @@
+diff --git a/arch/um/Kconfig b/arch/um/Kconfig
+index 354cc6b7..e6bd1b34 100644
+--- a/arch/um/Kconfig
++++ b/arch/um/Kconfig
+@@ -112,7 +112,7 @@ config MODE_SKAS
+ 	on the host it will run in SKAS0 mode, which is anyway faster than TT
+ 	mode.
+ 
+-source "arch/um/Kconfig.arch"
++#source "arch/um/Kconfig.arch"
+ source "mm/Kconfig"
+ 
+ config LD_SCRIPT_STATIC
+diff --git a/drivers/usb/net/Kconfig b/drivers/usb/net/Kconfig
+index 3de564b2..8dc09a37 100644
+--- a/drivers/usb/net/Kconfig
++++ b/drivers/usb/net/Kconfig
+@@ -313,8 +313,8 @@ config USB_KC2190
+ 	boolean "KT Technology KC2190 based cables (InstaNet)"
+ 	depends on USB_NET_CDC_SUBSET && EXPERIMENTAL
+ 	help
+-	  Choose this option if you're using a host-to-host cable
+-	  with one of these chips.
++	  Choose this option if you're using a host-to-host cable
++	  with one of these chips.
+ 
+ config USB_NET_ZAURUS
+ 	tristate "Sharp Zaurus (stock ROMs) and compatible"

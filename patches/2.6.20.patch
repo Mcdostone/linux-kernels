@@ -1,0 +1,13 @@
+diff --git a/arch/um/Kconfig b/arch/um/Kconfig
+index 5ac1f296..774939af 100644
+--- a/arch/um/Kconfig
++++ b/arch/um/Kconfig
+@@ -104,7 +104,7 @@ config MODE_SKAS
+ 	on the host it will run in SKAS0 mode, which is anyway faster than TT
+ 	mode.
+ 
+-source "arch/um/Kconfig.arch"
++#source "arch/um/Kconfig.arch"
+ source "mm/Kconfig"
+ 
+ config LD_SCRIPT_STATIC

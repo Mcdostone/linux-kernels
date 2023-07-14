@@ -1,0 +1,52 @@
+diff --git a/arch/arm/mach-sa1100/Kconfig b/arch/arm/mach-sa1100/Kconfig
+index f409cb9..f754f52 100644
+--- a/arch/arm/mach-sa1100/Kconfig
++++ b/arch/arm/mach-sa1100/Kconfig
+@@ -277,7 +277,7 @@ config SA1100_PFS168
+ 	bool "Tulsa"
+ 	depends on ARCH_SA1100
+ 	help
+-	  The Radisys Corp. PFS-168 (aka Tulsa) is an Intel® StrongArm® SA-1110 based
++	  The Radisys Corp. PFS-168 (aka Tulsa) is an IntelÂ® StrongArmÂ® SA-1110 based
+ 	  computer which includes the SA-1111 Microprocessor Companion Chip and other
+ 	  custom I/O designed to add connectivity and multimedia features for vending
+ 	  and business machine applications. Say Y here if you require support for
+diff --git a/arch/cris/Kconfig b/arch/cris/Kconfig
+index 86a05db..7f1c8e1 100644
+--- a/arch/cris/Kconfig
++++ b/arch/cris/Kconfig
+@@ -155,7 +155,7 @@ endmenu
+ source "drivers/base/Kconfig"
+ 
+ # bring in Etrax built-in drivers
+-source "arch/cris/drivers/Kconfig"
++source "arch/cris/arch-v10/drivers/Kconfig"
+ 
+ # standard linux drivers
+ source "drivers/mtd/Kconfig"
+diff --git a/arch/ppc/Kconfig b/arch/ppc/Kconfig
+index 16d645a..d13c04c 100644
+--- a/arch/ppc/Kconfig
++++ b/arch/ppc/Kconfig
+@@ -291,7 +291,7 @@ config RPXLITE
+ 
+ 	  HERMES:
+ 	  Hermes-Pro ISDN/LAN router with integrated 8 x hub
+-	  Manufacturer: Multidata Gesellschaft für Datentechnik und Informatik
++	  Manufacturer: Multidata Gesellschaft fÃ¼r Datentechnik und Informatik
+ 	  <http://www.multidata.de/>
+ 	  Date of Release: 2000 (?)
+ 	  End of life: -
+diff --git a/drivers/mtd/maps/Kconfig b/drivers/mtd/maps/Kconfig
+index 432e035..e28af3c 100644
+--- a/drivers/mtd/maps/Kconfig
++++ b/drivers/mtd/maps/Kconfig
+@@ -275,7 +275,7 @@ config MTD_CFI_FLAGADM
+ 	tristate "CFI Flash device mapping on FlagaDM"
+ 	depends on PPC32 && 8xx && MTD_CFI
+ 	help
+-	  Mapping for the Flaga digital module. If you don´t have one, ignore
++	  Mapping for the Flaga digital module. If you don't have one, ignore
+ 	  this setting.
+ 
+ config MTD_BEECH

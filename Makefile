@@ -6,6 +6,10 @@ all:
 clean:
 	rm -rf kernels output stderr.log
 
+
+output/%: output/%.json
+	echo ''
+
 output/%.json: kernels/%
 	mkdir -p output
 	./pouet --kernel-directory $^ $^ > $@ 2>> stderr.log

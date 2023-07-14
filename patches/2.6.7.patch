@@ -1,0 +1,39 @@
+diff --git a/arch/arm/mach-sa1100/Kconfig b/arch/arm/mach-sa1100/Kconfig
+index ce21b983..3a2d7c4f 100644
+--- a/arch/arm/mach-sa1100/Kconfig
++++ b/arch/arm/mach-sa1100/Kconfig
+@@ -242,7 +242,7 @@ config SA1100_SIMPAD
+ config SA1100_PFS168
+ 	bool "Tulsa"
+ 	help
+-	  The Radisys Corp. PFS-168 (aka Tulsa) is an Intel® StrongArm® SA-1110 based
++	  The Radisys Corp. PFS-168 (aka Tulsa) is an IntelÂ® StrongArmÂ® SA-1110 based
+ 	  computer which includes the SA-1111 Microprocessor Companion Chip and other
+ 	  custom I/O designed to add connectivity and multimedia features for vending
+ 	  and business machine applications. Say Y here if you require support for
+diff --git a/arch/ppc/Kconfig b/arch/ppc/Kconfig
+index 0d4e6516..f01b5a06 100644
+--- a/arch/ppc/Kconfig
++++ b/arch/ppc/Kconfig
+@@ -295,7 +295,7 @@ config RPXLITE
+ 
+ 	  HERMES:
+ 	  Hermes-Pro ISDN/LAN router with integrated 8 x hub
+-	  Manufacturer: Multidata Gesellschaft für Datentechnik und Informatik
++	  Manufacturer: Multidata Gesellschaft fÃ¼r Datentechnik und Informatik
+ 	  <http://www.multidata.de/>
+ 	  Date of Release: 2000 (?)
+ 	  End of life: -
+diff --git a/drivers/mtd/maps/Kconfig b/drivers/mtd/maps/Kconfig
+index 03d39d70..362c4830 100644
+--- a/drivers/mtd/maps/Kconfig
++++ b/drivers/mtd/maps/Kconfig
+@@ -275,7 +275,7 @@ config MTD_CFI_FLAGADM
+ 	tristate "CFI Flash device mapping on FlagaDM"
+ 	depends on PPC32 && 8xx && MTD_CFI
+ 	help
+-	  Mapping for the Flaga digital module. If you don´t have one, ignore
++	  Mapping for the Flaga digital module. If you don't have one, ignore
+ 	  this setting.
+ 
+ config MTD_BEECH
