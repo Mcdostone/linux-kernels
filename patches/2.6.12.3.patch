@@ -1,0 +1,26 @@
+diff --git a/arch/um/Kconfig b/arch/um/Kconfig
+index c5292181..4d6a77bd 100644
+--- a/arch/um/Kconfig
++++ b/arch/um/Kconfig
+@@ -68,7 +68,7 @@ config MODE_SKAS
+ 	to CONFIG_MODE_TT).  Otherwise, it is safe to say Y.  Disabling this
+ 	option will shrink the UML binary slightly.
+ 
+-source "arch/um/Kconfig_arch"
++#source "arch/um/Kconfig_arch"
+ 
+ config LD_SCRIPT_STATIC
+ 	bool
+diff --git a/net/ipv4/Kconfig b/net/ipv4/Kconfig
+index 6d3e8b1b..f23b8c63 100644
+--- a/net/ipv4/Kconfig
++++ b/net/ipv4/Kconfig
+@@ -92,7 +92,7 @@ config IP_ROUTE_MULTIPATH
+ 
+ config IP_ROUTE_MULTIPATH_CACHED
+ 	bool "IP: equal cost multipath with caching support (EXPERIMENTAL)"
+-	depends on: IP_ROUTE_MULTIPATH
++	depends on  IP_ROUTE_MULTIPATH
+ 	help
+ 	  Normally, equal cost multipath routing is not supported by the
+ 	  routing cache. If you say Y here, alternative routes are cached

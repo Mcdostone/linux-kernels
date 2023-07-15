@@ -1,33 +1,27 @@
-.PHONY: run
-.PRECIOUS: archives/linux-%.tar.xz
+.PHONY: all clean test
+
 all:
-	jq -r '. | keys[]' kernels.json | xargs -I{} -P1 make output/{}.json
+	@jq -r '.[]' versions.json | xargs -I{} -P1 time -f "{} done in %es" make -s output/{}.json
 
 clean:
-	rm -rf kernels output stderr.log
+	rm -rf output stderr.log
 
+output/%.json: linux
+	@mkdir -p output
+	@git -C linux restore .
+	git -C linux checkout v$*
+	@bash fix.sh $*
+	./pouet --kernel-directory linux linux > $@ 2>> stderr.log
 
-output/%: output/%.json
-	echo ''
-
-output/%.json: kernels/%
-	mkdir -p output
-	./pouet --kernel-directory $^ $^ > $@ 2>> stderr.log
-	#rm -rf $^ archives/linux-$*.tar.xz
-
-kernels/%: archives/linux-%.tar.xz
-	mkdir -p $@
-	tar -xJf $^  --strip-components 1 -C $@
-	bash fix.sh $*
-
-archives/linux-%.tar.xz:
-	mkdir -p $(shell dirname $@)
-	link=$$(jq -r ".[\"$*\"].link" kernels.json); \
-	wget --no-clobber "$$link" -O $@
+linux:
+	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $@
+	git -C $@ fetch --all --tags
 
 test:
-	jq -r '. | keys[]' kernels.json | xargs -I{} -P1 make output/{}.json delete-{}
+	@jq -r '.[]' versions.json | xargs -I{} -P1 time -f "{} done in %es" make -s output/{}.json delete-{}
 
 delete-%:
-	rm -rf kernels/%
-	echo "[]" > output/$*.json
+	@echo "[]" > output/$*.json
+
+versions.json:
+	jq -r ". | keys[]" kernels.json  | sort -V | jq -Rs 'split("\n")' > $@

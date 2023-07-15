@@ -1,0 +1,23 @@
+diff --git a/arch/h8300/Kconfig b/arch/h8300/Kconfig
+index 091ed619..2b1eee71 100644
+--- a/arch/h8300/Kconfig
++++ b/arch/h8300/Kconfig
+@@ -195,7 +195,7 @@ config UNIX98_PTYS
+ 
+ source "drivers/char/pcmcia/Kconfig"
+ 
+-source "drivers/serial/Kconfig"
++source "drivers/tty/serial/Kconfig"
+ 
+ source "drivers/i2c/Kconfig"
+ 
+diff --git a/arch/microblaze/platform/generic/Kconfig.auto b/arch/microblaze/platform/generic/Kconfig.auto
+index 25a6f019..5bd56031 100644
+--- a/arch/microblaze/platform/generic/Kconfig.auto
++++ b/arch/microblaze/platform/generic/Kconfig.auto
+@@ -58,4 +58,4 @@ config XILINX_MICROBLAZE0_USE_FPU
+ 
+ config XILINX_MICROBLAZE0_HW_VER
+ 	string "Core version number"
+-	default 7.10.d
++	default "7.10.d"

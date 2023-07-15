@@ -1,0 +1,13 @@
+diff --git a/arch/um/Kconfig b/arch/um/Kconfig
+index f1b33a23..13b00f6b 100644
+--- a/arch/um/Kconfig
++++ b/arch/um/Kconfig
+@@ -68,7 +68,7 @@ config MODE_SKAS
+ 	to CONFIG_MODE_TT).  Otherwise, it is safe to say Y.  Disabling this
+ 	option will shrink the UML binary slightly.
+ 
+-source "arch/um/Kconfig_arch"
++#source "arch/um/Kconfig_arch"
+ 
+ config LD_SCRIPT_STATIC
+ 	bool

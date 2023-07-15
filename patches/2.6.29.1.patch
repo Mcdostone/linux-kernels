@@ -1,0 +1,26 @@
+diff --git a/arch/blackfin/Kconfig b/arch/blackfin/Kconfig
+index 0c1f86e3..6f714c29 100644
+--- a/arch/blackfin/Kconfig
++++ b/arch/blackfin/Kconfig
+@@ -415,7 +415,7 @@ config CLKIN_HZ
+ 	int "Frequency of the crystal on the board in Hz"
+ 	default "11059200" if BFIN533_STAMP
+ 	default "27000000" if BFIN533_EZKIT
+-	default "25000000" if (BFIN537_STAMP || BFIN527_EZKIT || H8606_HVSISTEMAS || BLACKSTAMP || BFIN526_EZBRD || BFIN538_EZKIT || BFIN518F-EZBRD)
++	default "25000000" if (BFIN537_STAMP || BFIN527_EZKIT || H8606_HVSISTEMAS || BLACKSTAMP || BFIN526_EZBRD || BFIN538_EZKIT || BFIN518F_EZBRD)
+ 	default "30000000" if BFIN561_EZKIT
+ 	default "24576000" if PNAV10
+ 	default "10000000" if BFIN532_IP0X
+diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+index b4eea029..d9345bfc 100644
+--- a/drivers/hwmon/Kconfig
++++ b/drivers/hwmon/Kconfig
+@@ -305,7 +305,7 @@ config SENSORS_F71882FG
+ 	  will be called f71882fg.
+ 
+ config SENSORS_F75375S
+-	tristate "Fintek F75375S/SP and F75373";
++	tristate "Fintek F75375S/SP and F75373"
+ 	depends on I2C && EXPERIMENTAL
+ 	help
+ 	  If you say yes here you get support for hardware monitoring
