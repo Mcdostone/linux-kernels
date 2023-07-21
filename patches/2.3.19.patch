@@ -1,0 +1,13 @@
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 0c26f1a..688f1c5 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -210,7 +210,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"
+ 
+ 
+   mainmenu_option next_comment
+-  comment comment 'Old CD-ROM drivers (not SCSI, not IDE)'
++  comment 'Old CD-ROM drivers (not SCSI, not IDE)'
+ 
+   bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+   if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then

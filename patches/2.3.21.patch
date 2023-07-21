@@ -1,0 +1,26 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 52f69bc..474de74 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -114,7 +114,7 @@ if [ "$CONFIG_CPU_32" = "y" -a "$CONFIG_ARCH_EBSA110" != "y" -a "$CONFIG_EXPERIM
+    bool 'Enable kernel-mode alignment trap handler (EXPERIMENTAL)' CONFIG_ALIGNMENT_TRAP
+ fi
+ #bool 'Split text into discardable sections' CONFIG_TEXT_SECTIONS
+-endmenu
++
+ 
+ mainmenu_option next_comment
+ comment 'Loadable module support'
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 2375108..c3a5486 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -206,7 +206,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"
+ 
+ 
+    mainmenu_option next_comment
+-   comment comment 'Old CD-ROM drivers (not SCSI, not IDE)'
++   comment 'Old CD-ROM drivers (not SCSI, not IDE)'
+ 
+    bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+    if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then

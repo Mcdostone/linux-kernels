@@ -3,4 +3,6 @@ output
 #kernels
 pouet
 stderr.log
+kernels
 linux
+node_modules

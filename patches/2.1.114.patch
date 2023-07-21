@@ -1,0 +1,16 @@
+diff --git a/arch/m68k/config.in b/arch/m68k/config.in
+index 8da9182..24f4f8e 100644
+--- a/arch/m68k/config.in
++++ b/arch/m68k/config.in
+@@ -235,9 +235,10 @@ if [ "$CONFIG_ATARI" = "y" ]; then
+     tristate 'PAMsNet support' CONFIG_ATARI_PAMSNET
+   fi
+ fi
++fi
+ endmenu
+ 
+-fi
++
+ fi
+ 
+ source fs/Config.in
