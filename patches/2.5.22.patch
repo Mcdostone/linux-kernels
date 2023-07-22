@@ -1,0 +1,13 @@
+diff --git a/arch/mips64/config.in b/arch/mips64/config.in
+index 493a20d..3dd3102 100644
+--- a/arch/mips64/config.in
++++ b/arch/mips64/config.in
+@@ -123,8 +123,6 @@ endmenu
+ 
+ source drivers/pci/Config.in
+ 
+-endmenu
+-
+ source drivers/mtd/Config.in
+ 
+ source drivers/parport/Config.in

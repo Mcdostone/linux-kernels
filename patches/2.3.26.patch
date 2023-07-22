@@ -1,0 +1,12 @@
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 26356e8..4cadcaa 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -185,6 +185,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+ 	 tristate '  Baget Backplane Shared Memory support' CONFIG_BAGETBSM
+       fi
+    fi
++   fi
+    endmenu
+ fi
+ 

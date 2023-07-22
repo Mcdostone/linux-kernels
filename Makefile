@@ -37,7 +37,7 @@ parse-%:
 output/%.json:
 	@mkdir -p $(dir $@)
 	rm -rf kernels/current
-	t=$$(jq -r ".[\"$*\"] | if has(\"legacy\") then \"legacy\" else \"modern\" end" kernels.json); \
+	t=$$(jq -r ". | if index(\"$*\") then \"legacy\" else \"modern\" end" legacy.json); \
 	make prepare-$$t-$*
 	mv kernels/.tmp $@
 

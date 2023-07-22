@@ -30,8 +30,7 @@ for version in versions:
             listofkernels[v] = {
             'version': v,
                 'link': 'https://cdn.kernel.org/pub/linux/kernel/%s%s' % (version, a['href']),
-                'commands': [],
-                'legacy': False
+                'commands': []
             }
 
 

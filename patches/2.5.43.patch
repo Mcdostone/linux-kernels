@@ -1,0 +1,12 @@
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index cd1e059..18f46ca 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -226,7 +226,6 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_SOUND" != "n" ]; then
+    source sound/Config.in
+ fi
+-endmenu
+ 
+ source drivers/usb/Config.in
+ 
