@@ -16,29 +16,30 @@ kernels/archives/linux-%.tar.xz:
 	link=$$(jq -r ".[\"$*\"].link" kernels.json); \
 	wget -q --no-clobber "$$link" -O $@
 
-prepare-legacy-%: kernels/archives/linux-%.tar.xz 
+prepare-legacy-%: kernels/archives/linux-%.tar.xz
 	mkdir -p kernels/tmp/$*
 	tar -xJf $^ --strip-components 1 -C kernels/tmp/$*
 	ln -fs $$PWD/kernels/tmp/$* kernels/current
 	@bash fix.sh $*
-	make -s parse-$*
-	rm -rf kernels/tmp/$*
 
 prepare-modern-%: linux
+	git -C linux restore --staged .
 	git -C linux restore .
+	git -C linux clean -fd
 	git -C linux checkout v$*
-	ln -fs $^ kernels/current
+	ln -fs $$PWD/linux kernels/current
 	@bash fix.sh $*
-	make -s parse-$*
 
 parse-%: 
-	/usr/bin/time -f "[$*] Parsing: %es" ./pouet kernels/current > kernels/.tmp 2>> stderr.log
+	t=$$(jq -r ". | if index(\"$*\") then \"--legacy\" else \"\" end" legacy.json); \
+	/usr/bin/time -f "[$*] Parsing: %es" ./pouet $$OPTIONS $$t --kernel-directory kernels/current kernels/current > kernels/.tmp 2>> stderr.log
 
 output/%.json:
+	mkdir -p kernels
 	@mkdir -p $(dir $@)
 	rm -rf kernels/current
-	t=$$(jq -r ". | if index(\"$*\") then \"legacy\" else \"modern\" end" legacy.json); \
-	make prepare-$$t-$*
+	git -C linux tag | grep "^v$*$$" > /dev/null && make prepare-modern-$* || make prepare-legacy-$*
+	make -s parse-$*
 	mv kernels/.tmp $@
 
 linux:

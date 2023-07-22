@@ -12,3 +12,6 @@ jq  '.[].link' kernels.json | xargs -I {} -P8 wget --no-clobber {} -P archives
 
 cat kernels.json | jq  '.[].link' | uniq | sed -r 's#https://cdn.kernel.org/pub/linux/kernel/v[0-9]../linux-##g' | sed 's/.tar.xz//g' | jq --slurp '.' | jq  '.[] | [{ "key": ., "value": ""}] | from_entries' | jq -s add
 ```
+
+
+https://gemfury.com/squarecapadmin/python:Pygments/-/content/lexers/configs.py
