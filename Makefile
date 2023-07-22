@@ -8,6 +8,18 @@ all: versions.json
 	@git -C linux clean -fdq
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s output/{}.json
 
+
+fix: 
+	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s patches/{}.patch
+
+patches/%.patch:
+	git -C linux restore --staged .
+	git -C linux restore .
+	git -C linux clean -fd
+	git -C linux checkout v$*
+	sed -i 's/default 7.10.d/default "7.10.d"/' linux/arch/microblaze/platform/generic/Kconfig.auto
+	git -C linux diff > $$PWD/patches/$*.patch
+
 clean:
 	rm -rf output kernels stderr.log
 
