@@ -11,13 +11,3 @@ index 6df692d1..6ba3424f 100644
  
  source "drivers/i2c/Kconfig"
  
-diff --git a/arch/microblaze/platform/generic/Kconfig.auto b/arch/microblaze/platform/generic/Kconfig.auto
-index 5d86fc19..980d0855 100644
---- a/arch/microblaze/platform/generic/Kconfig.auto
-+++ b/arch/microblaze/platform/generic/Kconfig.auto
-@@ -58,4 +58,4 @@ config XILINX_MICROBLAZE0_USE_FPU
- 
- config XILINX_MICROBLAZE0_HW_VER
- 	string "Core version number"
--	default 7.10.d
-+	default "7.10.d"

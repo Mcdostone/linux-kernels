@@ -1,10 +1,15 @@
-diff --git a/arch/microblaze/platform/generic/Kconfig.auto b/arch/microblaze/platform/generic/Kconfig.auto
-index 25a6f019e94d..5bd560314a5c 100644
---- a/arch/microblaze/platform/generic/Kconfig.auto
-+++ b/arch/microblaze/platform/generic/Kconfig.auto
-@@ -58,4 +58,4 @@ config XILINX_MICROBLAZE0_USE_FPU
+diff --git a/sound/soc/ux500/Kconfig b/sound/soc/ux500/Kconfig
+index 069330d82be5..6b799c0e88df 100644
+--- a/sound/soc/ux500/Kconfig
++++ b/sound/soc/ux500/Kconfig
+@@ -20,8 +20,8 @@ config SND_SOC_UX500_PLAT_DMA
+ 	help
+ 		Say Y if you want to enable the Ux500 platform-driver.
  
- config XILINX_MICROBLAZE0_HW_VER
- 	string "Core version number"
--	default 7.10.d
-+	default "7.10.d"
+-+config SND_SOC_UX500_MACH_MOP500
+-+	tristate "Machine - MOP500 (Ux500 + AB8500)"
++config SND_SOC_UX500_MACH_MOP500
++	tristate "Machine - MOP500 (Ux500 + AB8500)"
+ 	depends on AB8500_CORE && AB8500_GPADC && SND_SOC_UX500
+ 	select SND_SOC_AB8500_CODEC
+ 	select SND_SOC_UX500_PLAT_MSP_I2S

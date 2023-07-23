@@ -50,7 +50,7 @@ output/%.json:
 	mkdir -p kernels
 	@mkdir -p $(dir $@)
 	rm -rf kernels/current
-	git -C linux tag | grep "^v$*$$" > /dev/null && make prepare-modern-$* || make prepare-legacy-$*
+	if git -C linux tag | grep "v$*\$$" > /dev/null; then make prepare-modern-$*; else make prepare-legacy-$*; fi
 	make -s parse-$*
 	mv kernels/.tmp $@
 

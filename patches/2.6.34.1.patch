@@ -1,13 +1,3 @@
-diff --git a/arch/microblaze/platform/generic/Kconfig.auto b/arch/microblaze/platform/generic/Kconfig.auto
-index 5d86fc19..980d0855 100644
---- a/arch/microblaze/platform/generic/Kconfig.auto
-+++ b/arch/microblaze/platform/generic/Kconfig.auto
-@@ -58,4 +58,4 @@ config XILINX_MICROBLAZE0_USE_FPU
- 
- config XILINX_MICROBLAZE0_HW_VER
- 	string "Core version number"
--	default 7.10.d
-+	default "7.10.d"
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
 index 68cf8774..d1a33fc0 100644
 --- a/drivers/hwmon/Kconfig

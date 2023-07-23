@@ -1,5 +1,5 @@
 diff --git a/sound/soc/ux500/Kconfig b/sound/soc/ux500/Kconfig
-index 069330d..6b799c0 100644
+index 069330d82be5..6b799c0e88df 100644
 --- a/sound/soc/ux500/Kconfig
 +++ b/sound/soc/ux500/Kconfig
 @@ -20,8 +20,8 @@ config SND_SOC_UX500_PLAT_DMA

@@ -1,5 +1,14 @@
+diff --git a/drivers/media/usb/stk1160/Kconfig b/drivers/media/usb/stk1160/Kconfig
+index 1c3a1ec00237..5fc9c2c354b8 100644
+--- a/drivers/media/usb/stk1160/Kconfig
++++ b/drivers/media/usb/stk1160/Kconfig
+@@ -17,4 +17,3 @@ config VIDEO_STK1160_AC97
+ 
+ 	---help---
+ 	  Enables AC97 codec support for stk1160 driver.
+-.
 diff --git a/sound/soc/ux500/Kconfig b/sound/soc/ux500/Kconfig
-index 069330d..6b799c0 100644
+index 069330d82be5..6b799c0e88df 100644
 --- a/sound/soc/ux500/Kconfig
 +++ b/sound/soc/ux500/Kconfig
 @@ -20,8 +20,8 @@ config SND_SOC_UX500_PLAT_DMA
