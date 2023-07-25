@@ -8,7 +8,6 @@ all: versions.json
 	@git -C linux clean -fdq
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s output/{}.json
 
-
 fix: 
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s patches/{}.patch
 
@@ -23,9 +22,9 @@ patches/%.patch:
 clean:
 	rm -rf output kernels stderr.log
 
-kernels/archives/linux-%.tar.xz:
+kernels/archives/linux-%.tar.xz: releases.json
 	mkdir -p $(shell dirname $@)
-	link=$$(jq -r ".[\"$*\"].link" kernels.json); \
+	link=$$(jq -r ".[\"$*\"].link" releases.json); \
 	wget -q --no-clobber "$$link" -O $@
 
 prepare-legacy-%: kernels/archives/linux-%.tar.xz
@@ -44,7 +43,7 @@ prepare-modern-%: linux
 
 parse-%: 
 	t=$$(jq -r ". | if index(\"$*\") then \"--legacy\" else \"\" end" legacy.json); \
-	/usr/bin/time -f "[$*] Parsing: %es" ./pouet $$OPTIONS $$t --kernel-directory kernels/current kernels/current > kernels/.tmp 2>> stderr.log
+	/usr/bin/time -f "[$*] Parsing: %es" ./pouet parse $$OPTIONS $$t --kernel-directory kernels/current kernels/current > kernels/.tmp 2>> stderr.log
 
 output/%.json:
 	mkdir -p kernels
@@ -64,5 +63,8 @@ test: versions.json
 delete-%:
 	@echo "[]" > output/$*.json
 
-versions.json:
-	jq -r ". | keys[]" kernels.json  | sort -V | jq -Rs 'split("\n")' > $@
+releases.json:
+	./pouet list > $@
+
+versions.json: releases.json
+	jq -r ". | keys[]" releases.json  | sort -V | jq -Rs 'split("\n")' > $@
