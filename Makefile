@@ -11,6 +11,10 @@ all: versions.json
 fix: 
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s patches/{}.patch
 
+pull:
+	@git -C linux checkout master
+	@git -C linux pull
+
 patches/%.patch:
 	git -C linux restore --staged .
 	git -C linux restore .
@@ -20,7 +24,7 @@ patches/%.patch:
 	git -C linux diff > $$PWD/patches/$*.patch
 
 clean:
-	rm -rf output kernels stderr.log
+	rm -rf output/* kernels stderr.log
 
 kernels/archives/linux-%.tar.xz: releases.json
 	mkdir -p $(shell dirname $@)
@@ -43,7 +47,7 @@ prepare-modern-%: linux
 
 parse-%: 
 	t=$$(jq -r ". | if index(\"$*\") then \"--legacy\" else \"\" end" legacy.json); \
-	/usr/bin/time -f "[$*] Parsing: %es" ./pouet parse $$OPTIONS $$t --kernel-directory kernels/current kernels/current > kernels/.tmp 2>> stderr.log
+	/usr/bin/time -f "[$*] Parsing: %es" ./pouet parse $$OPTIONS $$t --kernel-directory kernels/current kernels/current > kernels/.tmp
 
 output/%.json:
 	mkdir -p kernels
