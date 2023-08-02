@@ -15,3 +15,10 @@ services:
       interval: 3s
       timeout: 1s
       retries: 5
+
+  rabbit:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672

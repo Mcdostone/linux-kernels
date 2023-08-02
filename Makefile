@@ -46,8 +46,8 @@ prepare-modern-%: linux
 	@bash fix.sh $*
 
 parse-%: 
-	t=$$(jq -r ". | if index(\"$*\") then \"--legacy\" else \"\" end" legacy.json); \
-	/usr/bin/time -f "[$*] Parsing: %es" ./pouet parse $$OPTIONS $$t --kernel-directory kernels/current kernels/current > kernels/.tmp
+	t=$$(jq -r ". | if index(\"$*\") then \"config-in\" else \"kconfig\" end" legacy.json); \
+	/usr/bin/time -f "[$*] Parsing: %es" ./pouet extract-$$t $$OPTIONS --kernel-directory kernels/current kernels/current > kernels/.tmp
 
 output/%.json:
 	mkdir -p kernels
