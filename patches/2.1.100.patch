@@ -1,0 +1,35 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 3396b15..9b94be7 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -76,7 +76,7 @@ if [ "$CONFIG_PARPORT" != "n" ]; then
+ fi
+ endmenu
+ 
+-source arch/arm/drivers/block/Config.in
++source drivers/block/Config.in
+ source drivers/acorn/block/Config.in
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+@@ -128,7 +128,7 @@ source fs/Config.in
+ 
+ source fs/nls/Config.in
+ 
+-source arch/arm/drivers/char/Config.in
++source drivers/char/Config.in
+ 
+ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
+   mainmenu_option next_comment
+diff --git a/arch/ppc/config.in b/arch/ppc/config.in
+index c6ab44e..464d5f1 100644
+--- a/arch/ppc/config.in
++++ b/arch/ppc/config.in
+@@ -102,7 +102,7 @@ endmenu
+ 
+ source drivers/pnp/Config.in
+ source drivers/block/Config.in
+-source drivers.new/Config.in
++#source drivers.new/Config.in
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   source net/Config.in

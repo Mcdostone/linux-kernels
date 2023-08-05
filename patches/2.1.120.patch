@@ -1,5 +1,5 @@
 diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 59eae0e..1e84ed3 100644
+index fec3da3..2455313 100644
 --- a/arch/arm/config.in
 +++ b/arch/arm/config.in
 @@ -104,10 +104,10 @@ if [ "$CONFIG_PARPORT" != "n" ]; then
@@ -15,23 +15,11 @@ index 59eae0e..1e84ed3 100644
  
  mainmenu_option next_comment
  comment 'Console drivers'
-diff --git a/arch/m68k/config.in b/arch/m68k/config.in
-index f2ab0f0..22f3c1c 100644
---- a/arch/m68k/config.in
-+++ b/arch/m68k/config.in
-@@ -237,7 +237,6 @@ if [ "$CONFIG_ATARI" = "y" ]; then
- fi
- endmenu
- 
--fi
- fi
- 
- mainmenu_option next_comment
 diff --git a/arch/mips/config.in b/arch/mips/config.in
-index d3fd307..c326f67 100644
+index 171170f..a947b3c 100644
 --- a/arch/mips/config.in
 +++ b/arch/mips/config.in
-@@ -199,7 +199,7 @@ fi
+@@ -210,7 +210,7 @@ fi
  endmenu
  
  if [ "$CONFIG_SGI" = "y" ]; then

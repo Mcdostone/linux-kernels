@@ -1,3 +1,52 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 2b53031..a76c5c4 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -69,7 +69,7 @@ if [ "$CONFIG_PARPORT" != "n" ]; then
+ fi
+ endmenu
+ 
+-source arch/arm/drivers/block/Config.in
++source drivers/block/Config.in
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   source net/Config.in
+@@ -81,7 +81,7 @@ comment 'SCSI support'
+ tristate 'SCSI support?' CONFIG_SCSI
+ 
+ if [ "$CONFIG_SCSI" != "n" ]; then
+-  source arch/arm/drivers/scsi/Config.in
++  source drivers/scsi/Config.in
+ fi
+ endmenu
+ 
+@@ -91,7 +91,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+ 
+   bool 'Network device support?' CONFIG_NETDEVICES
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+-    source arch/arm/drivers/net/Config.in
++    source drivers/net/Config.in
+   fi
+   endmenu
+ fi
+@@ -120,7 +120,7 @@ source fs/Config.in
+ 
+ source fs/nls/Config.in
+ 
+-source arch/arm/drivers/char/Config.in
++source drivers/char/Config.in
+ 
+ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
+   mainmenu_option next_comment
+@@ -128,7 +128,7 @@ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
+ 
+   tristate 'Sound support' CONFIG_SOUND
+   if [ "$CONFIG_SOUND" != "n" ]; then
+-    source arch/arm/drivers/sound/Config.in
++    source drivers/sound/Config.in
+   fi
+   endmenu
+ fi
 diff --git a/arch/ppc/config.in b/arch/ppc/config.in
 index 95de5ab..2eab03c 100644
 --- a/arch/ppc/config.in

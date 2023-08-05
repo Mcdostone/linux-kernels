@@ -1,5 +1,5 @@
 diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 59eae0e..1e84ed3 100644
+index 328e0fe..258be5c 100644
 --- a/arch/arm/config.in
 +++ b/arch/arm/config.in
 @@ -104,10 +104,10 @@ if [ "$CONFIG_PARPORT" != "n" ]; then
@@ -12,31 +12,19 @@ index 59eae0e..1e84ed3 100644
  
 -source arch/arm/drivers/char/Config.in
 +source drivers/char/Config.in
+ bool 'Support Frame buffer devices' CONFIG_FB
+ source drivers/video/Config.in
  
- mainmenu_option next_comment
- comment 'Console drivers'
-diff --git a/arch/m68k/config.in b/arch/m68k/config.in
-index f2ab0f0..22f3c1c 100644
---- a/arch/m68k/config.in
-+++ b/arch/m68k/config.in
-@@ -237,7 +237,6 @@ if [ "$CONFIG_ATARI" = "y" ]; then
- fi
- endmenu
- 
--fi
- fi
- 
- mainmenu_option next_comment
 diff --git a/arch/mips/config.in b/arch/mips/config.in
-index d3fd307..c326f67 100644
+index 171170f..5192b8f 100644
 --- a/arch/mips/config.in
 +++ b/arch/mips/config.in
-@@ -199,7 +199,7 @@ fi
+@@ -210,7 +210,7 @@ fi
  endmenu
  
  if [ "$CONFIG_SGI" = "y" ]; then
 -  source drivers/sgi/char/Config.in
-+  #source drivers/sgi/char/Config.in
++  # source drivers/sgi/char/Config.in
  fi
  
  mainmenu_option next_comment

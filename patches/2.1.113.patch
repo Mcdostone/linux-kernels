@@ -1,12 +1,26 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index fec3da3..2455313 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -104,10 +104,10 @@ if [ "$CONFIG_PARPORT" != "n" ]; then
+ fi
+ endmenu
+ 
+-source arch/arm/drivers/block/Config.in
++source drivers/block/Config.in
+ source drivers/acorn/block/Config.in
+ 
+-source arch/arm/drivers/char/Config.in
++source drivers/char/Config.in
+ 
+ mainmenu_option next_comment
+ comment 'Console drivers'
 diff --git a/arch/m68k/config.in b/arch/m68k/config.in
-index 8da9182..24f4f8e 100644
+index 8da9182..9e29e5c 100644
 --- a/arch/m68k/config.in
 +++ b/arch/m68k/config.in
-@@ -235,9 +235,10 @@ if [ "$CONFIG_ATARI" = "y" ]; then
-     tristate 'PAMsNet support' CONFIG_ATARI_PAMSNET
-   fi
+@@ -237,7 +237,7 @@ if [ "$CONFIG_ATARI" = "y" ]; then
  fi
-+fi
  endmenu
  
 -fi
@@ -14,3 +28,16 @@ index 8da9182..24f4f8e 100644
  fi
  
  source fs/Config.in
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 171170f..a947b3c 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -210,7 +210,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_SGI" = "y" ]; then
+-  source drivers/sgi/char/Config.in
++  #source drivers/sgi/char/Config.in
+ fi
+ 
+ mainmenu_option next_comment

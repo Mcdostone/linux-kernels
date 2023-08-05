@@ -1,0 +1,26 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 2b59a96..931e647 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -132,7 +132,7 @@ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
+   source drivers/acorn/block/Config.in
+ fi
+ 
+-source arch/arm/drivers/char/Config.in
++source drivers/char/Config.in
+ 
+ if [ "$CONFIG_VT" = "y" ]; then
+   mainmenu_option next_comment
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index d3fd307..c326f67 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -199,7 +199,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_SGI" = "y" ]; then
+-  source drivers/sgi/char/Config.in
++  #source drivers/sgi/char/Config.in
+ fi
+ 
+ mainmenu_option next_comment

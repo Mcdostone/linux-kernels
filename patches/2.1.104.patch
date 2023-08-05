@@ -1,0 +1,42 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 328e0fe..258be5c 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -104,10 +104,10 @@ if [ "$CONFIG_PARPORT" != "n" ]; then
+ fi
+ endmenu
+ 
+-source arch/arm/drivers/block/Config.in
++source drivers/block/Config.in
+ source drivers/acorn/block/Config.in
+ 
+-source arch/arm/drivers/char/Config.in
++source drivers/char/Config.in
+ bool 'Support Frame buffer devices' CONFIG_FB
+ source drivers/video/Config.in
+ 
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 171170f..5192b8f 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -210,7 +210,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_SGI" = "y" ]; then
+-  source drivers/sgi/char/Config.in
++  # source drivers/sgi/char/Config.in
+ fi
+ 
+ mainmenu_option next_comment
+diff --git a/drivers/sound/Config.in b/drivers/sound/Config.in
+index 8d23d05..43099aa 100644
+--- a/drivers/sound/Config.in
++++ b/drivers/sound/Config.in
+@@ -182,6 +182,6 @@ mainmenu_option next_comment
+ comment 'Additional low level sound drivers'
+ bool 'Additional low level sound drivers' CONFIG_LOWLEVEL_SOUND $CONFIG_SOUND
+ if [ "$CONFIG_LOWLEVEL_SOUND" != "n" ]; then
+-    source drivers/sound/lowlevel/Config.in
++    #source drivers/sound/lowlevel/Config.in
+ fi
+ endmenu
