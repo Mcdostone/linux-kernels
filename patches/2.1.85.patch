@@ -1,0 +1,13 @@
+diff --git a/arch/ppc/config.in b/arch/ppc/config.in
+index 95de5ab..2eab03c 100644
+--- a/arch/ppc/config.in
++++ b/arch/ppc/config.in
+@@ -102,7 +102,7 @@ endmenu
+ 
+ source drivers/pnp/Config.in
+ source drivers/block/Config.in
+-source drivers.new/Config.in
++#source drivers/Config.in
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   source net/Config.in

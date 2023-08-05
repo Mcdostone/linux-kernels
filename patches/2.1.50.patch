@@ -1,0 +1,21 @@
+diff --git a/arch/ppc/config.in b/arch/ppc/config.in
+index 9df35fa..f11613d 100644
+--- a/arch/ppc/config.in
++++ b/arch/ppc/config.in
+@@ -28,7 +28,6 @@ if [ "$CONFIG_MODULES" = "y" ]; then
+ fi
+ 
+ 
+-mainmenu_option next_comment
+ define_bool CONFIG_PCI y
+ bool 'PCI bridge optimization (experimental)' CONFIG_PCI_OPTIMIZE
+ bool 'Networking support' CONFIG_NET
+@@ -94,7 +93,7 @@ fi
+ endmenu
+ 
+ mainmenu_option next_comment
+-#comment 'Kernel hacking'
++comment 'Kernel hacking'
+ #bool 'Debug kmalloc/kfree' CONFIG_DEBUG_MALLOC
+ #bool 'Kernel profiling support' CONFIG_PROFILE
+ #if [ "$CONFIG_PROFILE" = "y" ]; then

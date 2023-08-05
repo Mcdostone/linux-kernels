@@ -1,0 +1,26 @@
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index c5f8cdb..cb10686 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -50,6 +50,7 @@ if [ "$CONFIG_BLK_DEV_RAM" = "y" ]; then
+ fi
+ 
+ tristate 'Loopback device support' CONFIG_BLK_DEV_LOOP
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+    source net/Config.in
+@@ -78,6 +79,7 @@ if [ "$CONFIG_SCSI" != "n" ]; then
+    comment 'SCSI low-level drivers'
+ 
+    dep_tristate 'Sparc ESP Scsi Driver' CONFIG_SCSI_SUNESP $CONFIG_SCSI
++   endmenu
+ fi
+ endmenu
+ 
+@@ -111,3 +113,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+    int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file

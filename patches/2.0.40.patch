@@ -1,0 +1,26 @@
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index 04d16fd..a9dec50 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -54,6 +54,7 @@ tristate 'Loopback device support' CONFIG_BLK_DEV_LOOP
+ if [ "$CONFIG_NET" = "y" ]; then
+    source net/Config.in
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'SCSI support'
+@@ -78,6 +79,7 @@ if [ "$CONFIG_SCSI" != "n" ]; then
+    comment 'SCSI low-level drivers'
+ 
+    dep_tristate 'Sparc ESP Scsi Driver' CONFIG_SCSI_SUNESP $CONFIG_SCSI
++   endmenu
+ fi
+ endmenu
+ 
+@@ -116,3 +118,4 @@ bool 'Socket-buffer consistency checking' CONFIG_SKB_CHECK
+ if [ "$CONFIG_SKB_CHECK" = "y" ]; then
+    bool '  Whole-queue checking' CONFIG_SKB_CHECK_WHOLE_QUEUE
+ fi
++endmenu
+\ No newline at end of file

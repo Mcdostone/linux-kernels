@@ -1,0 +1,13 @@
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index 45168ff..e81eb8e 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -40,7 +40,7 @@ else
+ 	define_bool CONFIG_SUN_CONSOLE y
+ 	define_bool CONFIG_SUN_AUXIO y
+ 	define_bool CONFIG_SUN_IO y
+-	source drivers/sbus/char/Config.in
++	#source drivers/sbus/char/Config.in
+ fi
+ 
+ tristate 'Openprom tree appears in /proc/openprom (EXPERIMENTAL)' CONFIG_SUN_OPENPROMFS
