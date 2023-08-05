@@ -1,0 +1,169 @@
+diff --git a/arch/alpha/config.in b/arch/alpha/config.in
+index bfabf31..fa079c3 100644
+--- a/arch/alpha/config.in
++++ b/arch/alpha/config.in
+@@ -13,6 +13,8 @@ else
+   define_bool CONFIG_NATIVE y
+ fi
+ 
++endmenu
++
+ choice 'Alpha system type' \
+ 	"Jensen		CONFIG_ALPHA_JENSEN		\
+ 	 Noname		CONFIG_ALPHA_NONAME		\
+@@ -45,6 +47,7 @@ tristate 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF
+ mainmenu_option next_comment
+ comment 'Loadable module support'
+ bool 'Set version information on all symbols for modules' CONFIG_MODVERSIONS
++endmenu
+ 
+ source drivers/block/Config.in
+ 
+@@ -60,6 +63,7 @@ tristate 'SCSI support' CONFIG_SCSI
+ if [ "$CONFIG_SCSI" != "n" ]; then
+   source drivers/scsi/Config.in
+ fi
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   mainmenu_option next_comment
+@@ -69,6 +73,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+     source drivers/net/Config.in
+   fi
++  endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -78,6 +83,7 @@ bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/cdrom/Config.in
+ fi
++endmenu
+ 
+ source fs/Config.in
+ 
+@@ -90,6 +96,7 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/sound/Config.in
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -99,3 +106,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+   int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file
+diff --git a/arch/i386/config.in b/arch/i386/config.in
+index 5226710..5f492dc 100644
+--- a/arch/i386/config.in
++++ b/arch/i386/config.in
+@@ -24,10 +24,13 @@ fi
+ bool 'Use -m486 flag for 486-specific optimizations' CONFIG_M486
+ #fi
+ bool 'SMP Kernel (experimental - gcc2.5.8 only: see Documentation/SMP.txt)' CONFIG_SMP
++endmenu
++
+ 
+ mainmenu_option next_comment
+ comment 'Loadable module support'
+ bool 'Set version information on all symbols for modules' CONFIG_MODVERSIONS
++endmenu
+ 
+ source drivers/block/Config.in
+ 
+@@ -43,6 +46,7 @@ tristate 'SCSI support' CONFIG_SCSI
+ if [ "$CONFIG_SCSI" != "n" ]; then
+   source drivers/scsi/Config.in
+ fi
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   mainmenu_option next_comment
+@@ -52,6 +56,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+     source drivers/net/Config.in
+   fi
++  endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -61,6 +66,7 @@ bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/cdrom/Config.in
+ fi
++endmenu
+ 
+ source fs/Config.in
+ 
+@@ -73,6 +79,7 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/sound/Config.in
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -82,3 +89,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+   int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index d1cedda..aa00c81 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -21,6 +21,7 @@ bool 'Networking support' CONFIG_NET n
+ bool 'Limit memory to low 16MB' CONFIG_MAX_16M n
+ bool 'System V IPC' CONFIG_SYSVIPC y
+ bool 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF y
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+ mainmenu_option next_comment
+@@ -39,6 +40,7 @@ bool 'Disable NAGLE algorithm (normally enabled)' CONFIG_TCP_NAGLE_OFF n
+ fi
+ bool 'The IPX protocol' CONFIG_IPX n
+ #bool 'Amateur Radio AX.25 Level 2' CONFIG_AX25 n
++endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -64,6 +66,7 @@ comment 'SCSI low-level drivers'
+ bool 'Sun ESP Scsi support' CONFIG_SCSI_SUN_ESP n
+ 
+ fi
++endmenu
+ 
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+@@ -89,6 +92,7 @@ bool 'Load balancing support (experimental)' CONFIG_SLAVE_BALANCING n
+ bool 'Sun LANCE Ethernet support' CONFIG_SUN_LANCE n
+ bool 'Sun Intel Ethernet support' CONFIG_SUN_INTEL n
+ fi
++endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -110,7 +114,7 @@ else
+ fi
+ bool 'OS/2 HPFS filesystem support (read only)' CONFIG_HPFS_FS n
+ bool 'System V and Coherent filesystem support' CONFIG_SYSV_FS n
+-
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'character devices'
+@@ -121,6 +125,8 @@ comment 'Sound'
+ 
+ bool 'Sun Audio support' CONFIG_SUN_AUDIO n
+ 
++endmenu
++
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+ 

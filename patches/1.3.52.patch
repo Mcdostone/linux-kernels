@@ -1,0 +1,192 @@
+diff --git a/arch/alpha/config.in b/arch/alpha/config.in
+index 519f153..11cb198 100644
+--- a/arch/alpha/config.in
++++ b/arch/alpha/config.in
+@@ -57,6 +57,7 @@ fi
+ bool 'Networking support' CONFIG_NET
+ bool 'System V IPC' CONFIG_SYSVIPC
+ tristate 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF
++endmenu
+ 
+ source drivers/block/Config.in
+ 
+@@ -72,6 +73,7 @@ tristate 'SCSI support' CONFIG_SCSI
+ if [ "$CONFIG_SCSI" != "n" ]; then
+   source drivers/scsi/Config.in
+ fi
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   mainmenu_option next_comment
+@@ -81,6 +83,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+     source drivers/net/Config.in
+   fi
++  endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -90,6 +93,7 @@ bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/cdrom/Config.in
+ fi
++endmenu
+ 
+ source fs/Config.in
+ 
+@@ -102,6 +106,7 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_SOUND" != "n" ]; then
+   source drivers/sound/Config.in
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -111,3 +116,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+   int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file
+diff --git a/arch/i386/config.in b/arch/i386/config.in
+index d240810..a9e3c99 100644
+--- a/arch/i386/config.in
++++ b/arch/i386/config.in
+@@ -31,6 +31,7 @@ fi
+ #if [ "$CONFIG_M586" = "n" ]; then
+ bool 'Use 486-specific optimizations (does NOT work on i386)' CONFIG_M486
+ #fi
++endmenu
+ 
+ source drivers/block/Config.in
+ 
+@@ -46,6 +47,7 @@ tristate 'SCSI support' CONFIG_SCSI
+ if [ "$CONFIG_SCSI" != "n" ]; then
+   source drivers/scsi/Config.in
+ fi
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   mainmenu_option next_comment
+@@ -55,8 +57,10 @@ if [ "$CONFIG_NET" = "y" ]; then
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+     source drivers/net/Config.in
+   fi
++  endmenu
+ fi
+ 
++
+ mainmenu_option next_comment
+ comment 'CD-ROM drivers (not for SCSI or IDE/ATAPI drives)'
+ 
+@@ -64,6 +68,7 @@ bool 'Support non-SCSI/IDE/ATAPI CDROM drives' CONFIG_CD_NO_IDESCSI
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/cdrom/Config.in
+ fi
++endmenu
+ 
+ source fs/Config.in
+ 
+@@ -76,6 +81,7 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_SOUND" != "n" ]; then
+   source drivers/sound/Config.in
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -85,3 +91,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+   int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index cddafbd..16b0e69 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -47,10 +47,12 @@ bool 'Networking support' CONFIG_NET
+ #  bool '   PCI bridge optimisation (experimental)' CONFIG_PCI_OPTIMIZE
+ #fi
+ bool 'System V IPC' CONFIG_SYSVIPC
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Loadable module support'
+ bool 'Set version information on all symbols for modules' CONFIG_MODVERSIONS
++endmenu
+ 
+ source drivers/block/Config.in
+ 
+@@ -66,6 +68,7 @@ tristate 'SCSI support' CONFIG_SCSI
+ if [ "$CONFIG_SCSI" != "n" ]; then
+   source drivers/scsi/Config.in
+ fi
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+   mainmenu_option next_comment
+@@ -75,6 +78,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+     source drivers/net/Config.in
+   fi
++  endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -84,6 +88,7 @@ bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+ if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+   source drivers/cdrom/Config.in
+ fi
++endmenu
+ 
+ source fs/Config.in
+ 
+@@ -97,6 +102,7 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_SOUND" != "n" ]; then
+   source drivers/sound/Config.in
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -106,3 +112,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+   int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index e8ad90b..84fecac 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -17,6 +17,7 @@ define_bool CONFIG_SUN_CONSOLE y
+ bool 'Networking support' CONFIG_NET
+ bool 'System V IPC' CONFIG_SYSVIPC
+ tristate 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF
++endmenu
+ 
+ source drivers/block/Config.in
+ 
+@@ -32,6 +33,7 @@ tristate 'SCSI support' CONFIG_SCSI
+ if [ "$CONFIG_SCSI" != "n" ]; then
+ 	source drivers/scsi/Config.in
+ fi
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+ 	mainmenu_option next_comment
+@@ -41,6 +43,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+ 	if [ "$CONFIG_NETDEVICES" = "y" ]; then
+ 		source drivers/net/Config.in
+ 	fi
++	endmenu
+ fi
+ 
+ source fs/Config.in
+@@ -52,3 +55,4 @@ bool 'Kernel profiling support' CONFIG_PROFILE
+ if [ "$CONFIG_PROFILE" = "y" ]; then
+ 	int ' Profile shift count' CONFIG_PROFILE_SHIFT 2
+ fi
++endmenu
+\ No newline at end of file

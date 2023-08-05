@@ -1,0 +1,475 @@
+diff --git a/arch/alpha/config.in b/arch/alpha/config.in
+index 93b13e1..ae39c85 100644
+--- a/arch/alpha/config.in
++++ b/arch/alpha/config.in
+@@ -15,6 +15,10 @@ fi
+ 
+ tristate 'Normal floppy disk support' CONFIG_BLK_DEV_FD y
+ bool 'Normal (MFM/RLL) disk and IDE disk/cdrom support' CONFIG_ST506 y
++endmenu
++
++
++
+ if [ "$CONFIG_ST506" = "y" ]; then
+   comment 'Please see drivers/block/README.ide for help/info on IDE drives'
+   bool '   Use old disk-only driver for primary i/f' CONFIG_BLK_DEV_HD n
+@@ -95,56 +99,58 @@ bool 'Amateur Radio AX.25 Level 2' CONFIG_AX25 n
+ if [ "$CONFIG_AX25" = "y" ]; then
+   bool 'Amateur Radio NET/ROM' CONFIG_NETROM n
+ fi
++endmenu
++
+ fi
+ 
+ mainmenu_option next_comment
+ comment 'SCSI support'
+-
+ tristate 'SCSI support' CONFIG_SCSI y
+ 
+ if [ "$CONFIG_SCSI" = "n" ]; then
+ 
+-comment 'Skipping SCSI configuration options...'
+-
++	comment 'Skipping SCSI configuration options...'
+ else
+ 
+-comment 'SCSI support type (disk, tape, CDrom)'
++	comment 'SCSI support type (disk, tape, CDrom)'
+ 
+-dep_tristate 'SCSI disk support' CONFIG_BLK_DEV_SD y $CONFIG_SCSI
+-dep_tristate 'SCSI tape support' CONFIG_CHR_DEV_ST n $CONFIG_SCSI
+-dep_tristate 'SCSI CDROM support' CONFIG_BLK_DEV_SR y $CONFIG_SCSI
+-dep_tristate 'SCSI generic support' CONFIG_CHR_DEV_SG n $CONFIG_SCSI
++	dep_tristate 'SCSI disk support' CONFIG_BLK_DEV_SD y $CONFIG_SCSI
++	dep_tristate 'SCSI tape support' CONFIG_CHR_DEV_ST n $CONFIG_SCSI
++	dep_tristate 'SCSI CDROM support' CONFIG_BLK_DEV_SR y $CONFIG_SCSI
++	dep_tristate 'SCSI generic support' CONFIG_CHR_DEV_SG n $CONFIG_SCSI
+ 
+-comment 'Some SCSI devices (e.g. CD jukebox) support multiple LUNs'
++	comment 'Some SCSI devices (e.g. CD jukebox) support multiple LUNs'
+ 
+-bool 'Probe all LUNs on each SCSI device' CONFIG_SCSI_MULTI_LUN n
++	bool 'Probe all LUNs on each SCSI device' CONFIG_SCSI_MULTI_LUN n
+ 
+-mainmenu_option next_comment
+-comment 'SCSI low-level drivers'
+-
+-dep_tristate 'Adaptec AHA152X support' CONFIG_SCSI_AHA152X n $CONFIG_SCSI
+-dep_tristate 'Adaptec AHA1542 support' CONFIG_SCSI_AHA1542 n $CONFIG_SCSI
+-dep_tristate 'Adaptec AHA1740 support' CONFIG_SCSI_AHA1740 n $CONFIG_SCSI
+-dep_tristate 'Adaptec AHA274X/284X/294X support' CONFIG_SCSI_AIC7XXX n $CONFIG_SCSI
+-dep_tristate 'BusLogic SCSI support' CONFIG_SCSI_BUSLOGIC n $CONFIG_SCSI
+-dep_tristate 'EATA-DMA (DPT, NEC, ATT, Olivetti) support' CONFIG_SCSI_EATA_DMA n $CONFIG_SCSI
+-dep_tristate 'EATA-PIO (old DPT PM2001, PM2012A) support' CONFIG_SCSI_EATA_PIO n $CONFIG_SCSI
+-dep_tristate 'UltraStor 14F/34F support' CONFIG_SCSI_U14_34F n $CONFIG_SCSI
+-dep_tristate 'Future Domain 16xx SCSI support' CONFIG_SCSI_FUTURE_DOMAIN n $CONFIG_SCSI
+-bool 'Generic NCR5380 SCSI support' CONFIG_SCSI_GENERIC_NCR5380 n
+-if [ "$CONFIG_PCI" = "y" ]; then
+-  dep_tristate 'NCR53c7,8xx SCSI support'  CONFIG_SCSI_NCR53C7xx y $CONFIG_SCSI
+-fi
+-dep_tristate 'Always IN2000 SCSI support (test release)' CONFIG_SCSI_IN2000 n $CONFIG_SCSI
+-bool 'PAS16 SCSI support' CONFIG_SCSI_PAS16 n
+-dep_tristate 'QLOGIC SCSI support' CONFIG_SCSI_QLOGIC n $CONFIG_SCSI
+-dep_tristate 'Seagate ST-02 and Future Domain TMC-8xx SCSI support' CONFIG_SCSI_SEAGATE n $CONFIG_SCSI
+-bool 'Trantor T128/T128F/T228 SCSI support' CONFIG_SCSI_T128 n
+-dep_tristate 'UltraStor SCSI support' CONFIG_SCSI_ULTRASTOR n $CONFIG_SCSI
+-dep_tristate '7000FASST SCSI support' CONFIG_SCSI_7000FASST n $CONFIG_SCSI
+-dep_tristate 'EATA ISA/EISA (DPT PM2011/021/012/022/122/322) support' CONFIG_SCSI_EATA n $CONFIG_SCSI
+-#dep_tristate 'SCSI debugging host adapter' CONFIG_SCSI_DEBUG n $CONFIG_SCSI
++	mainmenu_option next_comment
++	comment 'SCSI low-level drivers'
++
++	dep_tristate 'Adaptec AHA152X support' CONFIG_SCSI_AHA152X n $CONFIG_SCSI
++	dep_tristate 'Adaptec AHA1542 support' CONFIG_SCSI_AHA1542 n $CONFIG_SCSI
++	dep_tristate 'Adaptec AHA1740 support' CONFIG_SCSI_AHA1740 n $CONFIG_SCSI
++	dep_tristate 'Adaptec AHA274X/284X/294X support' CONFIG_SCSI_AIC7XXX n $CONFIG_SCSI
++	dep_tristate 'BusLogic SCSI support' CONFIG_SCSI_BUSLOGIC n $CONFIG_SCSI
++	dep_tristate 'EATA-DMA (DPT, NEC, ATT, Olivetti) support' CONFIG_SCSI_EATA_DMA n $CONFIG_SCSI
++	dep_tristate 'EATA-PIO (old DPT PM2001, PM2012A) support' CONFIG_SCSI_EATA_PIO n $CONFIG_SCSI
++	dep_tristate 'UltraStor 14F/34F support' CONFIG_SCSI_U14_34F n $CONFIG_SCSI
++	dep_tristate 'Future Domain 16xx SCSI support' CONFIG_SCSI_FUTURE_DOMAIN n $CONFIG_SCSI
++	bool 'Generic NCR5380 SCSI support' CONFIG_SCSI_GENERIC_NCR5380 n
++	if [ "$CONFIG_PCI" = "y" ]; then
++	  dep_tristate 'NCR53c7,8xx SCSI support'  CONFIG_SCSI_NCR53C7xx y $CONFIG_SCSI
++	fi
++	dep_tristate 'Always IN2000 SCSI support (test release)' CONFIG_SCSI_IN2000 n $CONFIG_SCSI
++	bool 'PAS16 SCSI support' CONFIG_SCSI_PAS16 n
++	dep_tristate 'QLOGIC SCSI support' CONFIG_SCSI_QLOGIC n $CONFIG_SCSI
++	dep_tristate 'Seagate ST-02 and Future Domain TMC-8xx SCSI support' CONFIG_SCSI_SEAGATE n $CONFIG_SCSI
++	bool 'Trantor T128/T128F/T228 SCSI support' CONFIG_SCSI_T128 n
++	dep_tristate 'UltraStor SCSI support' CONFIG_SCSI_ULTRASTOR n $CONFIG_SCSI
++	dep_tristate '7000FASST SCSI support' CONFIG_SCSI_7000FASST n $CONFIG_SCSI
++	dep_tristate 'EATA ISA/EISA (DPT PM2011/021/012/022/122/322) support' CONFIG_SCSI_EATA n $CONFIG_SCSI
++	#dep_tristate 'SCSI debugging host adapter' CONFIG_SCSI_DEBUG n $CONFIG_SCSI
++	endmenu
+ fi
++endmenu
+ 
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+@@ -241,6 +247,7 @@ if [ "$CONFIG_TR" = "y" ]; then
+ fi
+ tristate 'Arcnet support' CONFIG_ARCNET n
+ fi
++endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -268,6 +275,7 @@ if [ "$CONFIG_CD_NO_IDESCSI" = "y" ]; then
+   tristate 'Experimental Optics Storage DOLPHIN 8000AT CDROM support' CONFIG_OPTCD n
+   bool 'Experimental Sanyo H94A CDROM support' CONFIG_SJCD n
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Filesystems'
+@@ -288,6 +296,8 @@ tristate 'ISO9660 cdrom filesystem support' CONFIG_ISO9660_FS y
+ tristate 'OS/2 HPFS filesystem support (read only)' CONFIG_HPFS_FS n
+ tristate 'System V and Coherent filesystem support' CONFIG_SYSV_FS n
+ tristate 'SMB filesystem (to mount WfW shares etc..) support' CONFIG_SMB_FS n
++endmenu
++
+ 
+ mainmenu_option next_comment
+ comment 'character devices'
+@@ -323,10 +333,12 @@ if [ "$CONFIG_FTAPE" = "y" ]; then
+   int ' number of ftape buffers' NR_FTAPE_BUFFERS 3
+ fi
+ 
++endmenu
++
+ mainmenu_option next_comment
+ comment 'Sound'
+-
+ bool 'Sound card support' CONFIG_SOUND n
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -339,3 +351,4 @@ fi
+ if [ "$CONFIG_SCSI" = "y" ]; then
+ bool 'Verbose SCSI error reporting (kernel size +=12K)' CONFIG_SCSI_CONSTANTS y
+ fi
++endmenu
+diff --git a/arch/i386/config.in b/arch/i386/config.in
+index 22dc4a8..1db5c71 100644
+--- a/arch/i386/config.in
++++ b/arch/i386/config.in
+@@ -44,95 +44,95 @@ bool 'Use -m486 flag for 486-specific optimizations' CONFIG_M486 y
+ #fi
+ bool 'SMP Kernel (experimental - gcc2.5.8 only: see Documentation/SMP.txt)' CONFIG_SMP n
+ 
++endmenu
++
+ mainmenu_option next_comment
+ comment 'Loadable module support'
+ bool 'Set version information on all symbols for modules' CONFIG_MODVERSIONS n
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+-mainmenu_option next_comment
+-comment 'Networking options'
+-bool 'TCP/IP networking' CONFIG_INET y
+-if [ "$CONFIG_INET" = "y" ]; then
+-bool 'IP: forwarding/gatewaying' CONFIG_IP_FORWARD n
+-bool 'IP: multicasting' CONFIG_IP_MULTICAST n
+-bool 'IP: firewalling' CONFIG_IP_FIREWALL n
+-bool 'IP: accounting' CONFIG_IP_ACCT n
+-tristate 'IP: tunneling' CONFIG_NET_IPIP n
+-if [ "$CONFIG_IP_FORWARD" = "y" -a "$CONFIG_IP_FIREWALL" = "y" ]; then
+-  bool 'IP: firewall packet logging' CONFIG_IP_FIREWALL_VERBOSE y
+-  bool 'IP: masquerading (ALPHA)' CONFIG_IP_MASQUERADE n
+-fi
+-if [ "$CONFIG_IP_FORWARD" = "y" -a "$CONFIG_IP_MULTICAST" = "y" ]; then
+-  bool 'IP: multicast routing(in progress)' CONFIG_IP_MROUTE n
+-fi
+-comment '(it is safe to leave these untouched)'
+-bool 'IP: PC/TCP compatibility mode' CONFIG_INET_PCTCP n
+-tristate 'IP: Reverse ARP' CONFIG_INET_RARP n
+-bool 'IP: Assume subnets are local' CONFIG_INET_SNARL y
+-bool 'IP: Disable NAGLE algorithm (normally enabled)' CONFIG_TCP_NAGLE_OFF n
+-bool 'IP: Drop source routed frames' CONFIG_IP_NOSR y
+-bool 'IP: Allow large windows (not recommended if <16Mb of memory)' CONFIG_SKB_LARGE y
+-fi
+-bool 'The IPX protocol' CONFIG_IPX n
+-bool 'Appletalk DDP' CONFIG_ATALK n
+-bool 'Amateur Radio AX.25 Level 2' CONFIG_AX25 n
+-if [ "$CONFIG_AX25" = "y" ]; then
+-  bool 'Amateur Radio NET/ROM' CONFIG_NETROM n
+-fi
+-bool 'Kernel/User network link driver(ALPHA)' CONFIG_NETLINK n
+-if [ "$CONFIG_NETLINK" = "y" ]; then
+-  bool 'Routing messages' CONFIG_RTNETLINK y
+-fi
++  mainmenu_option next_comment
++  comment 'Networking options'
++  bool 'TCP/IP networking' CONFIG_INET y
++  if [ "$CONFIG_INET" = "y" ]; then
++    bool 'IP: forwarding/gatewaying' CONFIG_IP_FORWARD n
++    bool 'IP: multicasting' CONFIG_IP_MULTICAST n
++    bool 'IP: firewalling' CONFIG_IP_FIREWALL n
++    bool 'IP: accounting' CONFIG_IP_ACCT n
++    tristate 'IP: tunneling' CONFIG_NET_IPIP n
++    if [ "$CONFIG_IP_FORWARD" = "y" -a "$CONFIG_IP_FIREWALL" = "y" ]; then
++      bool 'IP: firewall packet logging' CONFIG_IP_FIREWALL_VERBOSE y
++      bool 'IP: masquerading (ALPHA)' CONFIG_IP_MASQUERADE n
++    fi
++    if [ "$CONFIG_IP_FORWARD" = "y" -a "$CONFIG_IP_MULTICAST" = "y" ]; then
++      bool 'IP: multicast routing(in progress)' CONFIG_IP_MROUTE n
++    fi
++    comment '(it is safe to leave these untouched)'
++    bool 'IP: PC/TCP compatibility mode' CONFIG_INET_PCTCP n
++    tristate 'IP: Reverse ARP' CONFIG_INET_RARP n
++    bool 'IP: Assume subnets are local' CONFIG_INET_SNARL y
++    bool 'IP: Disable NAGLE algorithm (normally enabled)' CONFIG_TCP_NAGLE_OFF n
++    bool 'IP: Drop source routed frames' CONFIG_IP_NOSR y
++    bool 'IP: Allow large windows (not recommended if <16Mb of memory)' CONFIG_SKB_LARGE y
++  fi
++  bool 'The IPX protocol' CONFIG_IPX n
++  bool 'Appletalk DDP' CONFIG_ATALK n
++  bool 'Amateur Radio AX.25 Level 2' CONFIG_AX25 n
++  if [ "$CONFIG_AX25" = "y" ]; then
++    bool 'Amateur Radio NET/ROM' CONFIG_NETROM n
++  fi
++  bool 'Kernel/User network link driver(ALPHA)' CONFIG_NETLINK n
++  if [ "$CONFIG_NETLINK" = "y" ]; then
++    bool 'Routing messages' CONFIG_RTNETLINK y
++  fi
++  endmenu
+ fi
+ 
++endmenu
++
+ mainmenu_option next_comment
+ comment 'SCSI support'
+ 
+ tristate 'SCSI support' CONFIG_SCSI n
++endmenu
+ 
+ if [ "$CONFIG_SCSI" = "n" ]; then
+-
+-comment 'Skipping SCSI configuration options...'
+-
++  comment 'Skipping SCSI configuration options...'
+ else
+-
+-comment 'SCSI support type (disk, tape, CDrom)'
+-
+-dep_tristate 'SCSI disk support' CONFIG_BLK_DEV_SD y $CONFIG_SCSI
+-dep_tristate 'SCSI tape support' CONFIG_CHR_DEV_ST n $CONFIG_SCSI
+-dep_tristate 'SCSI CDROM support' CONFIG_BLK_DEV_SR y $CONFIG_SCSI
+-dep_tristate 'SCSI generic support' CONFIG_CHR_DEV_SG n $CONFIG_SCSI
+-
+-comment 'Some SCSI devices (e.g. CD jukebox) support multiple LUNs'
+-
+-bool 'Probe all LUNs on each SCSI device' CONFIG_SCSI_MULTI_LUN n
+-
+-mainmenu_option next_comment
+-comment 'SCSI low-level drivers'
+-
+-dep_tristate 'Adaptec AHA152X support' CONFIG_SCSI_AHA152X n $CONFIG_SCSI
+-dep_tristate 'Adaptec AHA1542 support' CONFIG_SCSI_AHA1542 y $CONFIG_SCSI
+-dep_tristate 'Adaptec AHA1740 support' CONFIG_SCSI_AHA1740 n $CONFIG_SCSI
+-dep_tristate 'Adaptec AHA274X/284X/294X support' CONFIG_SCSI_AIC7XXX n $CONFIG_SCSI
+-dep_tristate 'BusLogic SCSI support' CONFIG_SCSI_BUSLOGIC n $CONFIG_SCSI
+-dep_tristate 'EATA-DMA (DPT, NEC, ATT, Olivetti) support' CONFIG_SCSI_EATA_DMA n $CONFIG_SCSI
+-dep_tristate 'EATA-PIO (old DPT PM2001, PM2012A) support' CONFIG_SCSI_EATA_PIO n $CONFIG_SCSI
+-dep_tristate 'UltraStor 14F/34F support' CONFIG_SCSI_U14_34F n $CONFIG_SCSI
+-dep_tristate 'Future Domain 16xx SCSI support' CONFIG_SCSI_FUTURE_DOMAIN n $CONFIG_SCSI
+-bool 'Generic NCR5380 SCSI support' CONFIG_SCSI_GENERIC_NCR5380 n
+-if [ "$CONFIG_PCI" = "y" ]; then
+-  dep_tristate 'NCR53c7,8xx SCSI support'  CONFIG_SCSI_NCR53C7xx n $CONFIG_SCSI
+-fi
+-dep_tristate 'Always IN2000 SCSI support (test release)' CONFIG_SCSI_IN2000 n $CONFIG_SCSI
+-bool 'PAS16 SCSI support' CONFIG_SCSI_PAS16 n
+-dep_tristate 'QLOGIC SCSI support' CONFIG_SCSI_QLOGIC n $CONFIG_SCSI
+-dep_tristate 'Seagate ST-02 and Future Domain TMC-8xx SCSI support' CONFIG_SCSI_SEAGATE n $CONFIG_SCSI
+-bool 'Trantor T128/T128F/T228 SCSI support' CONFIG_SCSI_T128 n
+-dep_tristate 'UltraStor SCSI support' CONFIG_SCSI_ULTRASTOR n $CONFIG_SCSI
+-dep_tristate '7000FASST SCSI support' CONFIG_SCSI_7000FASST n $CONFIG_SCSI
+-dep_tristate 'EATA ISA/EISA (DPT PM2011/021/012/022/122/322) support' CONFIG_SCSI_EATA n $CONFIG_SCSI
+-dep_tristate 'NCR53c406a SCSI support' CONFIG_SCSI_NCR53C406A n $CONFIG_SCSI
+-#dep_tristate 'SCSI debugging host adapter' CONFIG_SCSI_DEBUG n $CONFIG_SCSI
++  comment 'SCSI support type (disk, tape, CDrom)'
++  dep_tristate 'SCSI disk support' CONFIG_BLK_DEV_SD y $CONFIG_SCSI
++  dep_tristate 'SCSI tape support' CONFIG_CHR_DEV_ST n $CONFIG_SCSI
++  dep_tristate 'SCSI CDROM support' CONFIG_BLK_DEV_SR y $CONFIG_SCSI
++  dep_tristate 'SCSI generic support' CONFIG_CHR_DEV_SG n $CONFIG_SCSI
++  comment 'Some SCSI devices (e.g. CD jukebox) support multiple LUNs'
++  bool 'Probe all LUNs on each SCSI device' CONFIG_SCSI_MULTI_LUN n
++  
++  mainmenu_option next_comment
++  comment 'SCSI low-level drivers'
++    dep_tristate 'Adaptec AHA152X support' CONFIG_SCSI_AHA152X n $CONFIG_SCSI
++    dep_tristate 'Adaptec AHA1542 support' CONFIG_SCSI_AHA1542 y $CONFIG_SCSI
++    dep_tristate 'Adaptec AHA1740 support' CONFIG_SCSI_AHA1740 n $CONFIG_SCSI
++    dep_tristate 'Adaptec AHA274X/284X/294X support' CONFIG_SCSI_AIC7XXX n $CONFIG_SCSI
++    dep_tristate 'BusLogic SCSI support' CONFIG_SCSI_BUSLOGIC n $CONFIG_SCSI
++    dep_tristate 'EATA-DMA (DPT, NEC, ATT, Olivetti) support' CONFIG_SCSI_EATA_DMA n $CONFIG_SCSI
++    dep_tristate 'EATA-PIO (old DPT PM2001, PM2012A) support' CONFIG_SCSI_EATA_PIO n $CONFIG_SCSI
++    dep_tristate 'UltraStor 14F/34F support' CONFIG_SCSI_U14_34F n $CONFIG_SCSI
++    dep_tristate 'Future Domain 16xx SCSI support' CONFIG_SCSI_FUTURE_DOMAIN n $CONFIG_SCSI
++    bool 'Generic NCR5380 SCSI support' CONFIG_SCSI_GENERIC_NCR5380 n
++    if [ "$CONFIG_PCI" = "y" ]; then
++      dep_tristate 'NCR53c7,8xx SCSI support'  CONFIG_SCSI_NCR53C7xx n $CONFIG_SCSI
++    fi
++    dep_tristate 'Always IN2000 SCSI support (test release)' CONFIG_SCSI_IN2000 n $CONFIG_SCSI
++    bool 'PAS16 SCSI support' CONFIG_SCSI_PAS16 n
++    dep_tristate 'QLOGIC SCSI support' CONFIG_SCSI_QLOGIC n $CONFIG_SCSI
++    dep_tristate 'Seagate ST-02 and Future Domain TMC-8xx SCSI support' CONFIG_SCSI_SEAGATE n $CONFIG_SCSI
++    bool 'Trantor T128/T128F/T228 SCSI support' CONFIG_SCSI_T128 n
++    dep_tristate 'UltraStor SCSI support' CONFIG_SCSI_ULTRASTOR n $CONFIG_SCSI
++    dep_tristate '7000FASST SCSI support' CONFIG_SCSI_7000FASST n $CONFIG_SCSI
++    dep_tristate 'EATA ISA/EISA (DPT PM2011/021/012/022/122/322) support' CONFIG_SCSI_EATA n $CONFIG_SCSI
++    dep_tristate 'NCR53c406a SCSI support' CONFIG_SCSI_NCR53C406A n $CONFIG_SCSI
++    #dep_tristate 'SCSI debugging host adapter' CONFIG_SCSI_DEBUG n $CONFIG_SCSI
++  endmenu
+ fi
+ 
+ 
+@@ -230,6 +230,7 @@ if [ "$CONFIG_TR" = "y" ]; then
+ fi
+ tristate 'Arcnet support' CONFIG_ARCNET n
+ fi
++  endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -257,6 +258,7 @@ if [ "$CONFIG_CD_NO_IDESCSI" = "y" ]; then
+   tristate 'Experimental Optics Storage DOLPHIN 8000AT CDROM support' CONFIG_OPTCD n
+   tristate 'Experimental Sanyo H94A CDROM support' CONFIG_SJCD n
+ fi
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'Filesystems'
+@@ -277,6 +279,7 @@ tristate 'ISO9660 cdrom filesystem support' CONFIG_ISO9660_FS y
+ tristate 'OS/2 HPFS filesystem support (read only)' CONFIG_HPFS_FS n
+ tristate 'System V and Coherent filesystem support' CONFIG_SYSV_FS n
+ tristate 'SMB filesystem (to mount WfW shares etc..) support' CONFIG_SMB_FS n
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'character devices'
+@@ -311,11 +314,15 @@ comment '>>> Which is available from ftp://ftp.funet.fi/pub/OS/Linux/BETA/QIC-02
+ 
+ fi
+ fi
++  endmenu
++
+ 
+ mainmenu_option next_comment
+ comment 'Sound'
+ 
+ tristate 'Sound card support' CONFIG_SOUND n
++endmenu
++
+ 
+ mainmenu_option next_comment
+ comment 'Kernel hacking'
+@@ -328,3 +335,4 @@ fi
+ if [ "$CONFIG_SCSI" = "y" ]; then
+ bool 'Verbose SCSI error reporting (kernel size +=12K)' CONFIG_SCSI_CONSTANTS y
+ fi
++endmenu
+\ No newline at end of file
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index d1cedda..107b157 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -21,6 +21,7 @@ bool 'Networking support' CONFIG_NET n
+ bool 'Limit memory to low 16MB' CONFIG_MAX_16M n
+ bool 'System V IPC' CONFIG_SYSVIPC y
+ bool 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF y
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+ mainmenu_option next_comment
+@@ -39,6 +40,7 @@ bool 'Disable NAGLE algorithm (normally enabled)' CONFIG_TCP_NAGLE_OFF n
+ fi
+ bool 'The IPX protocol' CONFIG_IPX n
+ #bool 'Amateur Radio AX.25 Level 2' CONFIG_AX25 n
++endmenu
+ fi
+ 
+ mainmenu_option next_comment
+@@ -62,34 +64,36 @@ bool 'SCSI generic support' CONFIG_CHR_DEV_SG n
+ comment 'SCSI low-level drivers'
+ 
+ bool 'Sun ESP Scsi support' CONFIG_SCSI_SUN_ESP n
+-
+ fi
++endmenu
+ 
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+ 
+-mainmenu_option next_comment
+-comment 'Network device support'
+-
+-bool 'Network device support?' CONFIG_NETDEVICES y
+-if [ "$CONFIG_NETDEVICES" = "n" ]; then
+-
+-comment 'Skipping network driver configuration options...'
+-
+-else
+-bool 'Dummy net driver support' CONFIG_DUMMY n
+-bool 'SLIP (serial line) support' CONFIG_SLIP n
+-if [ "$CONFIG_SLIP" = "y" ]; then
+-  bool ' CSLIP compressed headers' SL_COMPRESSED y
+-#  bool ' SLIP debugging on' SL_DUMP y
+-fi
+-bool 'PPP (point-to-point) support' CONFIG_PPP n
+-bool 'PLIP (parallel port) support' CONFIG_PLIP n
+-bool 'Load balancing support (experimental)' CONFIG_SLAVE_BALANCING n
+-bool 'Sun LANCE Ethernet support' CONFIG_SUN_LANCE n
+-bool 'Sun Intel Ethernet support' CONFIG_SUN_INTEL n
+-fi
++  mainmenu_option next_comment
++  comment 'Network device support'
++
++  bool 'Network device support?' CONFIG_NETDEVICES y
++  if [ "$CONFIG_NETDEVICES" = "n" ]; then
++
++    comment 'Skipping network driver configuration options...'
++
++  else
++    bool 'Dummy net driver support' CONFIG_DUMMY n
++    bool 'SLIP (serial line) support' CONFIG_SLIP n
++    if [ "$CONFIG_SLIP" = "y" ]; then
++      bool ' CSLIP compressed headers' SL_COMPRESSED y
++    #  bool ' SLIP debugging on' SL_DUMP y
++    fi
++    bool 'PPP (point-to-point) support' CONFIG_PPP n
++    bool 'PLIP (parallel port) support' CONFIG_PLIP n
++    bool 'Load balancing support (experimental)' CONFIG_SLAVE_BALANCING n
++    bool 'Sun LANCE Ethernet support' CONFIG_SUN_LANCE n
++    bool 'Sun Intel Ethernet support' CONFIG_SUN_INTEL n
++  fi
++  endmenu
+ fi
++  
+ 
+ mainmenu_option next_comment
+ comment 'Filesystems'
+@@ -110,12 +114,13 @@ else
+ fi
+ bool 'OS/2 HPFS filesystem support (read only)' CONFIG_HPFS_FS n
+ bool 'System V and Coherent filesystem support' CONFIG_SYSV_FS n
+-
++endmenu
+ 
+ mainmenu_option next_comment
+ comment 'character devices'
+-
+ bool 'Zilog serial support' CONFIG_SUN_ZS n
++endmenu
++
+ 
+ comment 'Sound'
+ 
+@@ -132,3 +137,4 @@ fi
+ if [ "$CONFIG_SCSI" = "y" ]; then
+ bool 'Verbose SCSI error reporting (kernel size +=12K)' CONFIG_SCSI_CONSTANTS y
+ fi
++endmenu
+\ No newline at end of file
