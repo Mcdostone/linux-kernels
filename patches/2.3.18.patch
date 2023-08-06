@@ -1,8 +1,8 @@
 diff --git a/arch/mips/config.in b/arch/mips/config.in
-index 0c26f1a..688f1c5 100644
+index ec1e8d6..9c73e8c 100644
 --- a/arch/mips/config.in
 +++ b/arch/mips/config.in
-@@ -210,7 +210,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"
+@@ -218,7 +218,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"
  
  
    mainmenu_option next_comment
@@ -11,3 +11,16 @@ index 0c26f1a..688f1c5 100644
  
    bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
    if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+diff --git a/drivers/char/Config.in b/drivers/char/Config.in
+index e0371a4..1ab4cfe 100644
+--- a/drivers/char/Config.in
++++ b/drivers/char/Config.in
+@@ -69,7 +69,7 @@ if [ "$CONFIG_BUSMOUSE" != "n" ]; then
+   dep_tristate 'ATIXL busmouse support' CONFIG_ATIXL_BUSMOUSE $CONFIG_BUSMOUSE
+   dep_tristate 'Logitech busmouse support' CONFIG_LOGIBUSMOUSE $CONFIG_BUSMOUSE
+   dep_tristate 'Microsoft busmouse support' CONFIG_MS_BUSMOUSE $CONFIG_BUSMOUSE
+-  if [ "$CONFIG_PPC" = "y" ; then
++  if [ "$CONFIG_PPC" = "y" ]; then
+     dep_tristate 'Apple Desktop Bus mouse support' CONFIG_ADBMOUSE $CONFIG_BUSMOUSE
+   fi
+ fi

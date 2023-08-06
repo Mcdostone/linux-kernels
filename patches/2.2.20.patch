@@ -1,18 +1,5 @@
-diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 467218d..b73f7b5 100644
---- a/arch/arm/config.in
-+++ b/arch/arm/config.in
-@@ -145,7 +145,7 @@ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
- fi
- 
- if [ "$CONFIG_VGA_CONSOLE" = "n" -a "$CONFIG_FB" = "n" ]; then
--  source arch/arm/drivers/char/Config.in
-+  #source arch/arm/drivers/char/Config.in
- else
-   source drivers/char/Config.in
- fi
 diff --git a/arch/mips/config.in b/arch/mips/config.in
-index aa1aba3..765ece6 100644
+index b4c92b4..0b6a63a 100644
 --- a/arch/mips/config.in
 +++ b/arch/mips/config.in
 @@ -217,7 +217,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"

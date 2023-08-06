@@ -1,0 +1,29 @@
+diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
+index 257c65d..2863169 100644
+--- a/drivers/s390/Config.in
++++ b/drivers/s390/Config.in
+@@ -32,6 +32,7 @@ if [ "$CONFIG_DASD" != "n"  ]; then
+ #  bool '   Support for CKD  Disks' CONFIG_DASD_CKD
+   bool '   Support for DIAG access to CMS reserved Disks' CONFIG_DASD_MDSK
+ fi
++endmenu
+ 
+ #menu_option next_comment
+ #endmenu
+@@ -42,7 +43,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+   bool 'Channel Device Configuration (Temporary Option)' CONFIG_CHANDEV
+   bool 'Network device support' CONFIG_NETDEVICES
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+-    menu_option next_comment
++    mainmenu_option next_comment
+     comment 'S390 Network devices'
+     bool 'CTC device support' CONFIG_CTC
+     bool 'IUCV device support (VM only)' CONFIG_IUCV
+@@ -50,6 +51,7 @@ if [ "$CONFIG_NET" = "y" ]; then
+     bool 'Ethernet (10 or 100Mbit)' CONFIG_NET_ETHERNET
+     bool 'Token Ring driver support' CONFIG_TR
+     bool 'FDDI driver support' CONFIG_FDDI
++    endmenu
+   fi
+   endmenu
+ fi

@@ -1,0 +1,13 @@
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index f570766..2568226 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -261,7 +261,7 @@ fi
+ 
+ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS" != "y" ]; then
+    mainmenu_option next_comment
+-   # comment 'AX.25 network device drivers'
++   comment 'AX.25 network device drivers'
+ 
+    source drivers/net/hamradio/Config.in
+    endmenu

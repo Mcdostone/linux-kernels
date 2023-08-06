@@ -1,0 +1,13 @@
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 6ec172d..cdb46bf 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -205,7 +205,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_SGI" = "y" ]; then
+-  source drivers/sgi/char/Config.in
++  #source drivers/sgi/char/Config.in
+ fi
+ 
+ mainmenu_option next_comment
