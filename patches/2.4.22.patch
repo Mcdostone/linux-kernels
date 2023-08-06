@@ -1,0 +1,26 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index e9d9190..0e4d5d5 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -602,7 +602,7 @@ endmenu
+ 
+ if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
+    # This is _meant_ to be ssi _not_ scsi.  It is not a spelling error.
+-   source drivers/ssi/Config.in
++   #source drivers/ssi/Config.in
+ fi
+ 
+ source drivers/ieee1394/Config.in
+diff --git a/arch/sh/config.in b/arch/sh/config.in
+index 4f344d0..67c6c0b 100644
+--- a/arch/sh/config.in
++++ b/arch/sh/config.in
+@@ -333,7 +333,7 @@ endmenu
+ source drivers/input/Config.in
+ 
+ if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
+-   source drivers/maple/Config.in
++   #source drivers/maple/Config.in
+ fi
+ 
+ mainmenu_option next_comment

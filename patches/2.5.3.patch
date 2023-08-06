@@ -1,13 +1,65 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index a9fae3e..dd15c3a 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -575,7 +575,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
+-   source drivers/ssi/Config.in
++   #source drivers/ssi/Config.in
+ fi
+ 
+ source drivers/ieee1394/Config.in
 diff --git a/arch/mips64/config.in b/arch/mips64/config.in
-index 493a20d..3dd3102 100644
+index 493a20d..6b0e0ec 100644
 --- a/arch/mips64/config.in
 +++ b/arch/mips64/config.in
-@@ -123,8 +123,6 @@ endmenu
+@@ -123,7 +123,6 @@ endmenu
  
  source drivers/pci/Config.in
  
 -endmenu
--
+ 
  source drivers/mtd/Config.in
  
- source drivers/parport/Config.in
+diff --git a/arch/sh/config.in b/arch/sh/config.in
+index d44bd15..f6883f6 100644
+--- a/arch/sh/config.in
++++ b/arch/sh/config.in
+@@ -264,7 +264,7 @@ endmenu
+ source drivers/input/Config.in
+ 
+ if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
+-   source drivers/maple/Config.in
++   #source drivers/maple/Config.in
+ fi
+ 
+ mainmenu_option next_comment
+diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
+index f3b8963..de14446 100644
+--- a/drivers/s390/Config.in
++++ b/drivers/s390/Config.in
+@@ -17,18 +17,18 @@ if [ "$CONFIG_DASD" != "n"  ]; then
+   dep_tristate '   Support for ECKD Disks' CONFIG_DASD_ECKD $CONFIG_DASD
+   if [ "$CONFIG_DASD_ECKD" = "m" ]; then
+     bool     '   Automatic activation of ECKD module' CONFIG_DASD_AUTO_ECKD
+-  fi;
++  fi
+   dep_tristate '   Support for FBA  Disks' CONFIG_DASD_FBA $CONFIG_DASD
+   if [ "$CONFIG_DASD_FBA" = "m" ]; then
+     bool     '   Automatic activation of FBA  module' CONFIG_DASD_AUTO_FBA
+-  fi;
++  fi
+ #  dep_tristate '   Support for CKD  Disks' CONFIG_DASD_CKD $CONFIG_DASD
+   if [ "$CONFIG_ARCH_S390X" != "y" ]; then
+     dep_tristate '   Support for DIAG access to CMS reserved Disks' CONFIG_DASD_DIAG $CONFIG_DASD
+     if [ "$CONFIG_DASD_DIAG" = "m" ]; then
+       bool     '   Automatic activation of DIAG module' CONFIG_DASD_AUTO_DIAG
+-    fi;
+-  fi; 
++    fi
++  fi
+ fi
+ 
+ endmenu

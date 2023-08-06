@@ -1,16 +1,3 @@
-diff --git a/arch/m68k/config.in b/arch/m68k/config.in
-index 9c91c30..f7832b8 100644
---- a/arch/m68k/config.in
-+++ b/arch/m68k/config.in
-@@ -502,7 +502,7 @@ if [ "$CONFIG_ATARI_MFPSER" = "y" -o "$CONFIG_ATARI_SCC" = "y" -o \
-      "$CONFIG_SUN3X_ZS" = "y" -o "$CONFIG_SERIAL" = "y" -o \
-      "$CONFIG_MVME147_SCC" -o "$CONFIG_SERIAL167" = "y" -o \
-      "$CONFIG_MVME162_SCC" -o "$CONFIG_BVME6000_SCC" = "y" -o \
--     "$CONFIG_DN_SERIAL" -o ]; then
-+     "$CONFIG_DN_SERIAL" ]; then
-    bool 'Support for serial port console' CONFIG_SERIAL_CONSOLE
- fi
- bool 'Support for user serial device modules' CONFIG_USERIAL
 diff --git a/arch/arm/config.in b/arch/arm/config.in
 index 9197447..3c58770 100644
 --- a/arch/arm/config.in

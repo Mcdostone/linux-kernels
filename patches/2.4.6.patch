@@ -1,0 +1,71 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index a546b21..0c24288 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -398,12 +398,12 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
+-   source drivers/ssi/Config.in
++   #source drivers/ssi/Config.in
+ fi
+ 
+ source drivers/ieee1394/Config.in
+ 
+-source drivers/message/i2o/Config.in
++source drivers/i2o/Config.in
+ 
+ mainmenu_option next_comment
+ comment 'ISDN subsystem'
+diff --git a/arch/cris/drivers/Config.in b/arch/cris/drivers/Config.in
+index b121086..065eb1f 100644
+--- a/arch/cris/drivers/Config.in
++++ b/arch/cris/drivers/Config.in
+@@ -156,7 +156,7 @@ fi
+ bool 'ARTPEC-1 support' CONFIG_JULIETTE
+ 
+ if [ "$CONFIG_JULIETTE" = "y" ]; then
+-   source arch/cris/drivers/juliette/Config.in
++   #source arch/cris/drivers/juliette/Config.in
+ fi
+ 
+ bool 'USB host' CONFIG_ETRAX_USB_HOST
+diff --git a/arch/mips/config.in b/arch/mips/config.in
+index 6f6fbb8..1219e11 100644
+--- a/arch/mips/config.in
++++ b/arch/mips/config.in
+@@ -361,7 +361,7 @@ endmenu
+ 
+ if [ "$CONFIG_DECSTATION" != "y" -a \
+      "$CONFIG_SGI_IP22" != "y" ]; then
+-   source drivers/message/i2o/Config.in
++   source drivers/i2o/Config.in
+ fi
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+diff --git a/arch/sh/config.in b/arch/sh/config.in
+index 934b283..5d55dde 100644
+--- a/arch/sh/config.in
++++ b/arch/sh/config.in
+@@ -230,7 +230,7 @@ fi
+ source drivers/input/Config.in
+ 
+ if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
+-source drivers/maple/Config.in
++#source drivers/maple/Config.in
+ fi
+ 
+ mainmenu_option next_comment
+diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
+index 4fe5cab..06b3075 100644
+--- a/drivers/s390/Config.in
++++ b/drivers/s390/Config.in
+@@ -19,7 +19,7 @@ if [ "$CONFIG_DASD" != "n"  ]; then
+ #  bool '   Support for CKD  Disks' CONFIG_DASD_CKD
+   if [ "$CONFIG_ARCH_S390" = "y" ]; then
+     bool '   Support for DIAG access to CMS reserved Disks' CONFIG_DASD_DIAG
+-  fi;
++  fi
+ fi
+ 
+ endmenu

@@ -1,0 +1,13 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 9c82c22..8d5eb23 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -602,7 +602,7 @@ endmenu
+ 
+ if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
+    # This is _meant_ to be ssi _not_ scsi.  It is not a spelling error.
+-   source drivers/ssi/Config.in
++   #source drivers/ssi/Config.in
+ fi
+ 
+ source drivers/ieee1394/Config.in

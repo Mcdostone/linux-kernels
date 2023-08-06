@@ -15,14 +15,6 @@ pull:
 	@git -C linux checkout master
 	@git -C linux pull
 
-patches/%.patch:
-	git -C linux restore --staged .
-	git -C linux restore .
-	git -C linux clean -fd
-	git -C linux checkout v$*
-	sed -i 's/default 7.10.d/default "7.10.d"/' linux/arch/microblaze/platform/generic/Kconfig.auto
-	git -C linux diff > $$PWD/patches/$*.patch
-
 clean:
 	rm -rf output/* kernels stderr.log
 
