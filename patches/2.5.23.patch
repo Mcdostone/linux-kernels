@@ -1,13 +1,60 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 544f39b..03cbe91 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -579,7 +579,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
+-   source drivers/ssi/Config.in
++   #source drivers/ssi/Config.in
+ fi
+ 
+ source drivers/ieee1394/Config.in
 diff --git a/arch/mips64/config.in b/arch/mips64/config.in
-index 493a20d..3dd3102 100644
+index f3794f9..8aa4d1e 100644
 --- a/arch/mips64/config.in
 +++ b/arch/mips64/config.in
-@@ -123,8 +123,6 @@ endmenu
+@@ -123,7 +123,6 @@ endmenu
  
  source drivers/pci/Config.in
  
 -endmenu
--
+ 
  source drivers/mtd/Config.in
  
- source drivers/parport/Config.in
+diff --git a/arch/ppc/8260_io/Config.in b/arch/ppc/8260_io/Config.in
+index 0dd8232..157c822 100644
+--- a/arch/ppc/8260_io/Config.in
++++ b/arch/ppc/8260_io/Config.in
+@@ -5,8 +5,6 @@ mainmenu_option next_comment
+ comment 'MPC8260 Communication Options'
+ bool 'Enable SCC Console' CONFIG_SCC_CONSOLE
+ if [ "$CONFIG_NET_ETHERNET" = "y" ]; then
+-  mainmenu_option next_comment
+-  comment 'MPC8260 Communication Options'
+   bool 'CPM SCC Ethernet' CONFIG_SCC_ENET
+   if [ "$CONFIG_SCC_ENET" = "y" ]; then
+   bool 'Ethernet on SCC1' CONFIG_SCC1_ENET
+diff --git a/arch/sh/config.in b/arch/sh/config.in
+index 136513e..a15f692 100644
+--- a/arch/sh/config.in
++++ b/arch/sh/config.in
+@@ -263,7 +263,7 @@ endmenu
+ source drivers/input/Config.in
+ 
+ if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
+-   source drivers/maple/Config.in
++   #source drivers/maple/Config.in
+ fi
+ 
+ mainmenu_option next_comment
+@@ -307,7 +307,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
+    endmenu
+ fi
+ 
+-source drivers/char/joystick/Config.in
++#source drivers/char/joystick/Config.in
+ 
+ if [ "$CONFIG_PARPORT" != "n" ]; then
+    dep_tristate 'Parallel printer support' CONFIG_PRINTER $CONFIG_PARPORT

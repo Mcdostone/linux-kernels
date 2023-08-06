@@ -1,8 +1,8 @@
 diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 16f059d..895af79 100644
+index 544f39b..03cbe91 100644
 --- a/arch/arm/config.in
 +++ b/arch/arm/config.in
-@@ -575,7 +575,7 @@ fi
+@@ -579,7 +579,7 @@ fi
  endmenu
  
  if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
@@ -12,7 +12,7 @@ index 16f059d..895af79 100644
  
  source drivers/ieee1394/Config.in
 diff --git a/arch/mips64/config.in b/arch/mips64/config.in
-index 097257e..5940a4d 100644
+index f3794f9..8aa4d1e 100644
 --- a/arch/mips64/config.in
 +++ b/arch/mips64/config.in
 @@ -123,7 +123,6 @@ endmenu
@@ -37,10 +37,10 @@ index 0dd8232..157c822 100644
    if [ "$CONFIG_SCC_ENET" = "y" ]; then
    bool 'Ethernet on SCC1' CONFIG_SCC1_ENET
 diff --git a/arch/sh/config.in b/arch/sh/config.in
-index 6ad267c..87126c8 100644
+index 136513e..a15f692 100644
 --- a/arch/sh/config.in
 +++ b/arch/sh/config.in
-@@ -264,7 +264,7 @@ endmenu
+@@ -263,7 +263,7 @@ endmenu
  source drivers/input/Config.in
  
  if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
@@ -49,7 +49,7 @@ index 6ad267c..87126c8 100644
  fi
  
  mainmenu_option next_comment
-@@ -308,7 +308,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
+@@ -307,7 +307,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
     endmenu
  fi
  

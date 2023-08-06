@@ -1,8 +1,8 @@
 diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 16f059d..895af79 100644
+index ae22284..93b14f5 100644
 --- a/arch/arm/config.in
 +++ b/arch/arm/config.in
-@@ -575,7 +575,7 @@ fi
+@@ -572,7 +572,7 @@ fi
  endmenu
  
  if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
@@ -12,7 +12,7 @@ index 16f059d..895af79 100644
  
  source drivers/ieee1394/Config.in
 diff --git a/arch/mips64/config.in b/arch/mips64/config.in
-index 097257e..5940a4d 100644
+index 63b5b1f..853d017 100644
 --- a/arch/mips64/config.in
 +++ b/arch/mips64/config.in
 @@ -123,7 +123,6 @@ endmenu
@@ -37,10 +37,10 @@ index 0dd8232..157c822 100644
    if [ "$CONFIG_SCC_ENET" = "y" ]; then
    bool 'Ethernet on SCC1' CONFIG_SCC1_ENET
 diff --git a/arch/sh/config.in b/arch/sh/config.in
-index 6ad267c..87126c8 100644
+index 136513e..a15f692 100644
 --- a/arch/sh/config.in
 +++ b/arch/sh/config.in
-@@ -264,7 +264,7 @@ endmenu
+@@ -263,7 +263,7 @@ endmenu
  source drivers/input/Config.in
  
  if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
@@ -49,7 +49,7 @@ index 6ad267c..87126c8 100644
  fi
  
  mainmenu_option next_comment
-@@ -308,7 +308,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
+@@ -307,7 +307,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
     endmenu
  fi
  
@@ -58,6 +58,19 @@ index 6ad267c..87126c8 100644
  
  if [ "$CONFIG_PARPORT" != "n" ]; then
     dep_tristate 'Parallel printer support' CONFIG_PRINTER $CONFIG_PARPORT
+diff --git a/drivers/isdn/hardware/avm/Config.in b/drivers/isdn/hardware/avm/Config.in
+index 59a2aea..af37687 100644
+--- a/drivers/isdn/hardware/avm/Config.in
++++ b/drivers/isdn/hardware/avm/Config.in
+@@ -14,7 +14,7 @@ if [ "$CONFIG_CAPI_AVM" != "n" ]; then
+    dep_mbool    '    AVM B1 PCI V4 support'       CONFIG_ISDN_DRV_AVMB1_B1PCIV4  $CONFIG_ISDN_DRV_AVMB1_B1PCI
+ 
+    dep_tristate '  AVM T1/T1-B ISA support'       CONFIG_ISDN_DRV_AVMB1_T1ISA    $CONFIG_ISDN_CAPI
+-q
++
+    dep_tristate '  AVM B1/M1/M2 PCMCIA support'   CONFIG_ISDN_DRV_AVMB1_B1PCMCIA $CONFIG_ISDN_CAPI
+ 
+    dep_tristate '  AVM B1/M1/M2 PCMCIA cs module' CONFIG_ISDN_DRV_AVMB1_AVM_CS   $CONFIG_ISDN_DRV_AVMB1_B1PCMCIA $CONFIG_PCMCIA
 diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
 index f3b8963..de14446 100644
 --- a/drivers/s390/Config.in

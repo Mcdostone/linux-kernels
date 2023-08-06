@@ -11,19 +11,6 @@ index 544f39b..03cbe91 100644
  fi
  
  source drivers/ieee1394/Config.in
-diff --git a/arch/ia64/config.in b/arch/ia64/config.in
-index 5104389..f20067e 100644
---- a/arch/ia64/config.in
-+++ b/arch/ia64/config.in
-@@ -238,7 +238,7 @@ fi
- fi # !HP_SIM
- 
- if [ "$CONFIG_IA64_HP_SIM" != "n" -o "$CONFIG_IA64_GENERIC" != "n" ]; then
--  source arch/ia64/hp/Config.in
-+  #source arch/ia64/hp/Config.in
- fi
- 
- 
 diff --git a/arch/sh/config.in b/arch/sh/config.in
 index 136513e..a15f692 100644
 --- a/arch/sh/config.in
