@@ -1,3 +1,16 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 467218d..b73f7b5 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -145,7 +145,7 @@ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
+ fi
+ 
+ if [ "$CONFIG_VGA_CONSOLE" = "n" -a "$CONFIG_FB" = "n" ]; then
+-  source arch/arm/drivers/char/Config.in
++  #source arch/arm/drivers/char/Config.in
+ else
+   source drivers/char/Config.in
+ fi
 diff --git a/arch/mips/config.in b/arch/mips/config.in
 index aa1aba3..765ece6 100644
 --- a/arch/mips/config.in
@@ -11,3 +24,31 @@ index aa1aba3..765ece6 100644
  
    bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
    if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
+index 93ed044..c37c123 100644
+--- a/drivers/s390/Config.in
++++ b/drivers/s390/Config.in
+@@ -30,6 +30,7 @@ if [ "$CONFIG_DASD" != "n"  ]; then
+   comment 'DASD disciplines'
+   bool '   Support for ECKD Disks' CONFIG_DASD_ECKD
+ fi
++endmenu
+ 
+ #menu_option next_comment
+ #endmenu
+@@ -40,13 +41,14 @@ if [ "$CONFIG_NET" = "y" ]; then
+ 
+   bool 'Network device support' CONFIG_NETDEVICES
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+-    menu_option next_comment
++    mainmenu_option next_comment
+     comment 'S390 Network devices'
+     bool 'CTC device support' CONFIG_CTC
+     bool 'IUCV device support (VM only)' CONFIG_IUCV
+     tristate 'Dummy net driver support' CONFIG_DUMMY
+     bool 'Ethernet (10 or 100Mbit)' CONFIG_NET_ETHERNET
+     bool 'Token Ring driver support' CONFIG_TR
++    endmenu
+   fi
+   endmenu
+ fi

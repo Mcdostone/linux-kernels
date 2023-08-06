@@ -1,5 +1,5 @@
 diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 467218d..b73f7b5 100644
+index af7b3fc..27b8e82 100644
 --- a/arch/arm/config.in
 +++ b/arch/arm/config.in
 @@ -145,7 +145,7 @@ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
@@ -12,15 +12,15 @@ index 467218d..b73f7b5 100644
    source drivers/char/Config.in
  fi
 diff --git a/arch/mips/config.in b/arch/mips/config.in
-index aa1aba3..765ece6 100644
+index b5d7916..2d02322 100644
 --- a/arch/mips/config.in
 +++ b/arch/mips/config.in
-@@ -217,7 +217,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"
+@@ -207,7 +207,7 @@ fi
+ endmenu
  
+ if [ "$CONFIG_SGI" = "y" ]; then
+-  source drivers/sgi/char/Config.in
++  #source drivers/sgi/char/Config.in
+ fi
  
-   mainmenu_option next_comment
--  comment comment 'Old CD-ROM drivers (not SCSI, not IDE)'
-+  comment 'Old CD-ROM drivers (not SCSI, not IDE)'
- 
-   bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
-   if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+ mainmenu_option next_comment

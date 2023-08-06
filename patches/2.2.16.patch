@@ -1,5 +1,18 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index ed7135a..8ddbe02 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -145,7 +145,7 @@ if [ "$CONFIG_ARCH_ACORN" = "y" ]; then
+ fi
+ 
+ if [ "$CONFIG_VGA_CONSOLE" = "n" -a "$CONFIG_FB" = "n" ]; then
+-  source arch/arm/drivers/char/Config.in
++  source drivers/char/Config.in
+ else
+   source drivers/char/Config.in
+ fi
 diff --git a/arch/mips/config.in b/arch/mips/config.in
-index aa1aba3..765ece6 100644
+index b4c92b4..0b6a63a 100644
 --- a/arch/mips/config.in
 +++ b/arch/mips/config.in
 @@ -217,7 +217,7 @@ if [ "$CONFIG_SGI" != "y" -a "$CONFIG_DECSTATION" != "y" -a "$CONFIG_BAGET_MIPS"
@@ -11,3 +24,31 @@ index aa1aba3..765ece6 100644
  
    bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
    if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
+index 9cdca1f..d021faa 100644
+--- a/drivers/s390/Config.in
++++ b/drivers/s390/Config.in
+@@ -39,6 +39,7 @@ if [ "$CONFIG_DASD" != "n"  ]; then
+     bool '   Support for DIAG access to CMS formatted Disks' CONFIG_DASD_MDSK
+   fi
+ fi
++endmenu
+ 
+ #menu_option next_comment
+ #  comment 'S/390-SCSI support'
+@@ -50,13 +51,14 @@ if [ "$CONFIG_NET" = "y" ]; then
+   comment 'S/390 Network device support'
+   bool 'Network device support' CONFIG_NETDEVICES
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+-    menu_option next_comment
++    mainmenu_option next_comment
+     comment 'S390 Network devices'
+     bool 'CTC device support' CONFIG_CTC
+     bool 'IUCV device support (VM only)' CONFIG_IUCV
+     tristate 'Dummy net driver support' CONFIG_DUMMY
+     bool 'Ethernet (10 or 100Mbit)' CONFIG_NET_ETHERNET
+     bool 'Token Ring driver support' CONFIG_TR
++    endmenu
+   fi
+   endmenu
+ fi
