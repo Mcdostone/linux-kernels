@@ -1,0 +1,26 @@
+diff --git a/arch/sparc64/config.in b/arch/sparc64/config.in
+index 2d67b5e..13fed59 100644
+--- a/arch/sparc64/config.in
++++ b/arch/sparc64/config.in
+@@ -197,7 +197,7 @@ if [ "$CONFIG_SCSI" != "n" ]; then
+ fi
+ endmenu
+ 
+-source drivers/message/fusion/Config.in
++#source drivers/message/fusion/Config.in
+ 
+ source drivers/fc4/Config.in
+ 
+diff --git a/drivers/s390/Config.in b/drivers/s390/Config.in
+index dea2b09..c357216 100644
+--- a/drivers/s390/Config.in
++++ b/drivers/s390/Config.in
+@@ -19,7 +19,7 @@ if [ "$CONFIG_DASD" != "n"  ]; then
+ #  bool '   Support for CKD  Disks' CONFIG_DASD_CKD
+   if [ "$CONFIG_ARCH_S390" = "y" ]; then
+     bool '   Support for DIAG access to CMS reserved Disks' CONFIG_DASD_MDSK
+-  fi;
++  fi
+ fi
+ 
+ endmenu
