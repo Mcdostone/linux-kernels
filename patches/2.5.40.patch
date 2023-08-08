@@ -1,8 +1,8 @@
 diff --git a/arch/arm/config.in b/arch/arm/config.in
-index 544f39b..03cbe91 100644
+index 635874b..5bf116c 100644
 --- a/arch/arm/config.in
 +++ b/arch/arm/config.in
-@@ -579,7 +579,7 @@ fi
+@@ -466,7 +466,7 @@ fi
  endmenu
  
  if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
@@ -11,24 +11,11 @@ index 544f39b..03cbe91 100644
  fi
  
  source drivers/ieee1394/Config.in
-diff --git a/arch/ia64/config.in b/arch/ia64/config.in
-index 5104389..f20067e 100644
---- a/arch/ia64/config.in
-+++ b/arch/ia64/config.in
-@@ -238,7 +238,7 @@ fi
- fi # !HP_SIM
- 
- if [ "$CONFIG_IA64_HP_SIM" != "n" -o "$CONFIG_IA64_GENERIC" != "n" ]; then
--  source arch/ia64/hp/Config.in
-+  #source arch/ia64/hp/Config.in
- fi
- 
- 
 diff --git a/arch/sh/config.in b/arch/sh/config.in
-index 136513e..a15f692 100644
+index 54640eb..d304b84 100644
 --- a/arch/sh/config.in
 +++ b/arch/sh/config.in
-@@ -263,7 +263,7 @@ endmenu
+@@ -262,7 +262,7 @@ endmenu
  source drivers/input/Config.in
  
  if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
@@ -37,7 +24,7 @@ index 136513e..a15f692 100644
  fi
  
  mainmenu_option next_comment
-@@ -307,7 +307,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
+@@ -306,7 +306,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
     endmenu
  fi
  
@@ -46,3 +33,16 @@ index 136513e..a15f692 100644
  
  if [ "$CONFIG_PARPORT" != "n" ]; then
     dep_tristate 'Parallel printer support' CONFIG_PRINTER $CONFIG_PARPORT
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index cd1e059..65e224b 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -226,7 +226,7 @@ tristate 'Sound card support' CONFIG_SOUND
+ if [ "$CONFIG_SOUND" != "n" ]; then
+    source sound/Config.in
+ fi
+-endmenu
++
+ 
+ source drivers/usb/Config.in
+ 

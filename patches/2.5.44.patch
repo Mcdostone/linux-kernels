@@ -1,12 +1,61 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index 9e6605c..525a124 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -470,7 +470,7 @@ fi
+ endmenu
+ 
+ if [ "$CONFIG_ARCH_CLPS711X" = "y" ]; then
+-   source drivers/ssi/Config.in
++   #source drivers/ssi/Config.in
+ fi
+ 
+ source drivers/ieee1394/Config.in
+diff --git a/arch/sh/config.in b/arch/sh/config.in
+index 54640eb..d304b84 100644
+--- a/arch/sh/config.in
++++ b/arch/sh/config.in
+@@ -262,7 +262,7 @@ endmenu
+ source drivers/input/Config.in
+ 
+ if [ "$CONFIG_SH_DREAMCAST" = "y" ]; then
+-   source drivers/maple/Config.in
++   #source drivers/maple/Config.in
+ fi
+ 
+ mainmenu_option next_comment
+@@ -306,7 +306,7 @@ if [ "$CONFIG_SH_DREAMCAST" = "y" -a "$CONFIG_MAPLE" != "n" ]; then
+    endmenu
+ fi
+ 
+-source drivers/char/joystick/Config.in
++#source drivers/char/joystick/Config.in
+ 
+ if [ "$CONFIG_PARPORT" != "n" ]; then
+    dep_tristate 'Parallel printer support' CONFIG_PRINTER $CONFIG_PARPORT
 diff --git a/arch/sparc/config.in b/arch/sparc/config.in
-index cd1e059..18f46ca 100644
+index e93547a..c2f141b 100644
 --- a/arch/sparc/config.in
 +++ b/arch/sparc/config.in
-@@ -226,7 +226,6 @@ tristate 'Sound card support' CONFIG_SOUND
+@@ -230,7 +230,7 @@ tristate 'Sound card support' CONFIG_SOUND
  if [ "$CONFIG_SOUND" != "n" ]; then
     source sound/Config.in
  fi
 -endmenu
++
  
  source drivers/usb/Config.in
  
+diff --git a/drivers/pnp/Config.in b/drivers/pnp/Config.in
+index 437735c..71d7c4a 100644
+--- a/drivers/pnp/Config.in
++++ b/drivers/pnp/Config.in
+@@ -9,7 +9,7 @@ dep_bool 'Plug and Play support' CONFIG_PNP
+    dep_bool '  Plug and Play device name database' CONFIG_PNP_NAMES $CONFIG_PNP
+    dep_bool '  PnP Debug Messages' CONFIG_PNP_DEBUG $CONFIG_PNP
+ 
+-comment 'Protocols' $CONFIG_PNP
++comment 'Protocols $CONFIG_PNP'
+ 
+ if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+    dep_bool '  ISA Plug and Play support (EXPERIMENTAL)' CONFIG_ISAPNP $CONFIG_PNP
