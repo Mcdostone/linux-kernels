@@ -1,7 +1,6 @@
-.PHONY: all clean test
-.PRECIOUS: archives/linux-%.tar.xz kernels/tmp/%
+.PHONY: all clean test pull
 
-all: versions.json
+all: versions.json pull
 	touch stderr.log
 	@git -C linux restore --staged .
 	@git -C linux restore .
@@ -11,7 +10,7 @@ all: versions.json
 fix: 
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s patches/{}.patch
 
-pull:
+pull: linux
 	@git -C linux checkout master
 	@git -C linux pull
 
@@ -45,10 +44,12 @@ parse-%:
 output/%.json:
 	mkdir -p kernels
 	@mkdir -p $(dir $@)
-	rm -rf kernels/current
+	rm -f kernels/current
 	if git -C linux tag | grep "v$*\$$" > /dev/null; then make prepare-modern-$*; else make prepare-legacy-$*; fi
 	make -s parse-$*
 	mv kernels/.tmp $@
+	rm -rf "kernels/tmp/$*"
+	
 
 linux:
 	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $@

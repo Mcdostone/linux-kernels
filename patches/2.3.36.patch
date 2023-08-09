@@ -1,0 +1,13 @@
+diff --git a/arch/arm/config.in b/arch/arm/config.in
+index e1d54c4..46470a5 100644
+--- a/arch/arm/config.in
++++ b/arch/arm/config.in
+@@ -110,7 +110,7 @@ fi
+ if [ "$CONFIG_ARCH_NEXUSPCI" = "y" -o \
+      "$CONFIG_HOST_FOOTBRIDGE" = "y" ]; then
+    define_bool CONFIG_PCI y
+-   source drivers/pci/Config.h
++   source drivers/pci/Config.in
+ fi
+ 
+ #

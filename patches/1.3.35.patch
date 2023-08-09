@@ -296,7 +296,7 @@ index 22dc4a8..1db5c71 100644
 +  dep_tristate 'SCSI generic support' CONFIG_CHR_DEV_SG n $CONFIG_SCSI
 +  comment 'Some SCSI devices (e.g. CD jukebox) support multiple LUNs'
 +  bool 'Probe all LUNs on each SCSI device' CONFIG_SCSI_MULTI_LUN n
-+  
++
 +  mainmenu_option next_comment
 +  comment 'SCSI low-level drivers'
 +    dep_tristate 'Adaptec AHA152X support' CONFIG_SCSI_AHA152X n $CONFIG_SCSI
@@ -447,7 +447,7 @@ index d1cedda..107b157 100644
 +  fi
 +  endmenu
  fi
-+  
++
  
  mainmenu_option next_comment
  comment 'Filesystems'
