@@ -11,8 +11,9 @@ fix:
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s patches/{}.patch
 
 pull: linux
-	@git -C linux checkout master
-	@git -C linux pull
+	@git -C linux restore .
+	@git -C linux clean -fd
+	@git -C linux fetch origin master:master
 
 clean:
 	rm -rf output/* kernels stderr.log
@@ -20,7 +21,7 @@ clean:
 kernels/archives/linux-%.tar.xz: releases.json
 	mkdir -p $(shell dirname $@)
 	link=$$(jq -r ".[\"$*\"].link" releases.json); \
-	wget -q --no-clobber "$$link" -O $@
+	wget  --no-clobber "$$link" -O $@
 
 prepare-legacy-%: kernels/archives/linux-%.tar.xz
 	mkdir -p kernels/tmp/$*
@@ -47,9 +48,8 @@ output/%.json:
 	rm -f kernels/current
 	if git -C linux tag | grep "v$*\$$" > /dev/null; then make prepare-modern-$*; else make prepare-legacy-$*; fi
 	make -s parse-$*
-	mv kernels/.tmp $@
+	#mv kernels/.tmp $@
 	rm -rf "kernels/tmp/$*"
-	
 
 linux:
 	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $@

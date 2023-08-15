@@ -7,9 +7,8 @@ services:
     environment:
       - POSTGRES_PASSWORD=rootroot
       - POSTGRES_DB=kconfigs
-#    volumes:
-#      - ./db.sql:/docker-entrypoint-initdb.d/1.sql
-#      - ./data/postgres:/var/lib/postgresql/data
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 3s
