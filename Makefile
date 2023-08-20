@@ -1,11 +1,11 @@
 .PHONY: all clean test pull
 
-all: versions.json pull
+all: versions.json
 	touch stderr.log
-	@git -C linux fetch origin master:master
-	@git -C linux restore --staged .
-	@git -C linux restore .
-	@git -C linux clean -fd
+	#@git -C linux fetch origin master:master
+	#@git -C linux restore --staged .
+	#@git -C linux restore .
+	#@git -C linux clean -fd
 	@jq -r '.[]' versions.json | xargs -I{} -P1 make -s output/{}.json
 
 fix: 
@@ -31,26 +31,28 @@ prepare-legacy-%: kernels/archives/linux-%.tar.xz
 	@bash fix.sh $*
 
 prepare-modern-%: linux
-	git -C linux restore --staged .
-	git -C linux restore .
-	git -C linux clean -fd
-	git -C linux checkout v$*
-	ln -fs $$PWD/linux kernels/current
-	git -C linux clean -fd
-	@bash fix.sh $*
+	#git -C linux restore --staged .
+	#git -C linux restore .
+	#git -C linux clean -fd
+	#git -C linux checkout v$*
+	#ln -fs $$PWD/linux kernels/current
+	#git -C linux clean -fd
+	#@bash fix.sh $*
 
 parse-%: 
 	echo "Parsing $*"
 	t=$$(jq -r ". | if index(\"$*\") then \"config-in-to-kconfig\" else \"kconfig\" end" legacy.json); \
-	/usr/bin/time -f "[$*] Parsing: %es" ./pouet extract-$$t $$OPTIONS --kernel-directory kernels/current kernels/current > kernels/.tmp 2>> stderr.log
+	./pouet extract-$$t $$OPTIONS --kernel-directory kernels/current kernels/current > kernels/.tmp 2>> stderr.log
 
 output/%.json:
 	mkdir -p kernels
 	@mkdir -p $(dir $@)
 	rm -f kernels/current
-	if git -C linux tag | grep "v$*\$$" > /dev/null; then make prepare-modern-$*; else make prepare-legacy-$*; fi
+	# if git -C linux tag | grep "v$*\$$" > /dev/null; then make prepare-modern-$*; else make prepare-legacy-$*; fi
+	make prepare-legacy-$*
+	./pouet wait
 	make -s parse-$*
-	#mv kernels/.tmp $@
+	mv kernels/.tmp $@
 	rm -rf "kernels/tmp/$*"
 
 linux:
