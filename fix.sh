@@ -3,13 +3,13 @@
 ROOT="$(dirname $(realpath $0))"
 
 if  [ -f "./patches/$1.patch" ]; then
-    if  [ "./kernels/current/.git" ]; then
+    if  [ -d "./kernels/current/.git" ]; then
         git -C kernels/current restore .
         git -C kernels/current clean -fd
         git -C kernels/current apply "$ROOT/patches/$1.patch" 2>> stderr.log 
-    else 
+    else
         if grep -q 'für' "$ROOT/patches/$1.patch"; then
-                git -C kernels/current init .
+                git init kernels/current
                 git -C kernels/current add .
                 git -C kernels/current commit -m "ok"
                 git -C kernels/current apply "$ROOT/patches/$1.patch"
