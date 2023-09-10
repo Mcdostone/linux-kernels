@@ -23,13 +23,13 @@ with list_versions as (
     from list_versions
     order by semver_version
 )
-select id, json_agg(version) as versions, json_agg(semver_version) as s_versions
+select id, jsonb_agg(version) as versions, jsonb_agg(semver_version) as s_versions
 from semver_versions
 group by id;
 
 drop view if exists architectures;
 create or replace view architectures as
-select name, json_agg(architecture) as architectures
+select name, jsonb_agg(architecture) as architectures
 from kconfig
 group by name;
 
@@ -68,3 +68,6 @@ select json_agg(data)
 from configs
 where configs.architecture != '';
 ```
+
+
+CONFIG_FTAPE
