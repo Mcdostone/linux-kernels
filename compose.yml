@@ -1,6 +1,7 @@
 services:
   postgres:
-    image: postgres:15
+    build:
+      context: .
     container_name: postgres
     ports:
       - "5432:5432"
