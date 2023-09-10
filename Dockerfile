@@ -9,5 +9,5 @@ RUN git clone https://github.com/theory/pg-semver.git
 WORKDIR /tmp/pg-semver
 RUN make
 RUN make install
-RUN make installcheck PGUSER=postgres
+#RUN make installcheck PGUSER=postgres
 

@@ -25,7 +25,3 @@ output/%.json:
 kernels/repository:
 	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $@
 	git -C $@ fetch --all --tags
-
-kernels/repository:
-	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $@
-	git -C $@ fetch --all --tags
