@@ -67,6 +67,27 @@ where configs.architecture = '';
 select json_agg(data)
 from configs
 where configs.architecture != '';
+
+
+-- all versions
+select distinct jsonb_object_keys(versions) as versions
+from kconfig
+order by  versions;
+
+
+
+select f.id, f.version, f.max
+from(
+        select t.id, t.version, max(semver(t.all_versions)) from (
+                                                                     select id, version, jsonb_object_keys(versions) as all_versions
+                                                                     from kconfig
+                                                                 ) as t
+        where t.all_versions != '1.0' and t.all_versions != '2.0'
+        group by t.id, t.version
+    ) as f
+where semver(f.version) != f.max
+order by f.id;
+
 ```
 
 

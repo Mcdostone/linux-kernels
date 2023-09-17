@@ -1,0 +1,33 @@
+diff --git a/arch/sparc/config.in b/arch/sparc/config.in
+index 9829bbb..bf67e66 100644
+--- a/arch/sparc/config.in
++++ b/arch/sparc/config.in
+@@ -48,6 +48,7 @@ if [ "$CONFIG_BLK_DEV_RAM" = "y" ]; then
+ fi
+ 
+ tristate 'Loopback device support' CONFIG_BLK_DEV_LOOP
++endmenu
+ 
+ if [ "$CONFIG_NET" = "y" ]; then
+ 	source net/Config.in
+@@ -76,6 +77,7 @@ if [ "$CONFIG_SCSI" != "n" ]; then
+ 	comment 'SCSI low-level drivers'
+ 
+ 	dep_tristate 'Sparc ESP Scsi Driver' CONFIG_SCSI_SUNESP $CONFIG_SCSI
++	endmenu
+ fi
+ endmenu
+ 
+diff --git a/fs/Config.in b/fs/Config.in
+index ffb1803..0701deb 100644
+--- a/fs/Config.in
++++ b/fs/Config.in
+@@ -35,7 +35,7 @@ fi
+ tristate 'ISO9660 cdrom filesystem support' CONFIG_ISO9660_FS
+ tristate 'OS/2 HPFS filesystem support (read only)' CONFIG_HPFS_FS
+ tristate 'System V and Coherent filesystem support' CONFIG_SYSV_FS
+-if [ "$CONFIG_EXPERIMENTAL = "y" ]; then
++if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+   tristate 'Amiga FFS filesystem support (EXPERIMENTAL)' CONFIG_AFFS_FS
+   if [ "$CONFIG_AFFS_FS" != "n" ]; then
+     define_bool CONFIG_AMIGA_PARTITION y
