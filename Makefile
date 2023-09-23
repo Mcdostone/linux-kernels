@@ -1,6 +1,6 @@
 .PHONY: all clean test pull
 
-all: pull
+all: #pull
 	./pouet --verbose all --patches-directory ./patches/
 
 clean:
