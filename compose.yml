@@ -1,24 +1,16 @@
 services:
   postgres:
-    build:
-      context: .
+    image: postgres:16
     container_name: postgres
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=rootroot
       - POSTGRES_DB=kconfigs
-#    volumes:
-#      - ./data/postgres:/var/lib/postgresql/data
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 3s
       timeout: 1s
       retries: 5
-
-  rabbit:
-    image: rabbitmq:3.12-management
-    container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "8080:15672"

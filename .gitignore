@@ -9,3 +9,4 @@ node_modules
 find.log
 .kernels.json
 .releases.json
+data
