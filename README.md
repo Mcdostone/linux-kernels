@@ -3,6 +3,9 @@
 
 ```bash
  "4.14.277",
+
+ "3.4"
+ "3.5"
  ```
 
 https://gemfury.com/squarecapadmin/python:Pygments/-/content/lexers/configs.py
