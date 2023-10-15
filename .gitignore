@@ -10,3 +10,4 @@ find.log
 .kernels.json
 .releases.json
 data
+**/*.DS_Store
