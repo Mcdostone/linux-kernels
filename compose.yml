@@ -16,15 +16,6 @@ services:
       timeout: 1s
       retries: 5
 
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: root@root.root
-      PGADMIN_DEFAULT_PASSWORD: rootroot
-    ports:
-      - "80:80"
-
   grafana:
     image: grafana/grafana-oss
     container_name: grafana

@@ -1,7 +1,7 @@
 .PHONY: all clean test pull
 
 all: #pull
-	./pouet --verbose all --no-cache --patches-directory ./patches/
+	./pouet --verbose all --patches-directory ./patches/
 
 clean:
 	rm -rf output/* kernels/tmp kernels/current stderr.log
